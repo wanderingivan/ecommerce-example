@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+						http://www.springframework.org/schema/security
+						http://www.springframework.org/schema/security/spring-security.xsd
+						http://www.springframework.org/schema/util 
+                        http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+						
+   	<!-- Load ACL related configurations-->
+	<import resource="acl-context.xml"/>
+
+    <sec:http pattern="/css/**" security="none"/>
+    <sec:http pattern="/js/**" security="none"/>
+    <sec:http pattern="/img/**" security="none"/>
+    <sec:http pattern="/util/loadImage**" security="none"/>
+	<sec:http auto-config="true" use-expressions="true">
+	<!-- This Must be edited to conform to usage expressions -->
+		<sec:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
+		<sec:intercept-url pattern="/deleteUser*" access="hasRole('ROLE_ADMIN')"/>
+		<sec:intercept-url pattern="/message/*" access="isAuthenticated()"/>
+		<sec:intercept-url pattern="/order/*" access="isAuthenticated()"/>
+		<sec:intercept-url pattern="/cart/*" access="isAuthenticated()"/>
+		<sec:form-login login-page="/user/login" 
+			authentication-failure-url="/user/login"
+            authentication-success-handler-ref="AuthenticationSuccessHandler" 
+            authentication-failure-handler-ref="SimpleAuthenticationFailureHandler"/>
+		<sec:logout logout-success-url="/welcome.action"/>
+		<sec:http-basic/>
+	</sec:http>
+
+	<sec:authentication-manager>
+		<sec:authentication-provider user-service-ref="userDao">
+		  <sec:password-encoder ref="passwordEncoder"/>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	
+	<bean id="springDefaultUserServiceRef"
+			class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+		<property name="dataSource" ref="dataSource"/>			
+    </bean>	
+	
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="12"/>
+	</bean>
+	<bean id="AuthenticationSuccessHandler" 
+		  	class="com.ecommerce.security.SavedRequestRoleBasedAuthenticationSuccessHandler">
+		  	<constructor-arg index="0" ref="roleUrls"/>
+		  	<constructor-arg index="1" value="/welcome"/>
+    </bean>
+  	 
+    <util:map id="roleUrls" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.String">
+        <entry key="ROLE_ADMIN" value="/admin/welcome"/>
+        <entry key="ROLE_USER" value="/user/show"/>
+    </util:map>
+    
+	<bean id="SimpleAuthenticationFailureHandler"
+	        class="com.ecommerce.security.SimpleAuthenticationFailureHandler">
+	      <constructor-arg value="/user/login"/>
+	</bean>	
+
+</beans>
+		
