@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.dynamicMethodInvocation" value="false"/>
+	<constant name="struts.custom.i18n.resources" value="global"/>
+	
+	<!-- Adapter so we could include spring security csrf tokens in multipart POSTs -->
+    <constant name="struts.multipart.parser" value="springMultipartParser"/>
+
+
+    		
+    <package name="default" extends="tiles-default">
+		<interceptors>
+			<interceptor name="authAwareInterceptor" class="com.ecommerce.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+    </package>
+    		
+    <package name="index" extends="default" namespace="/">
+    
+     	<action name="welcome" class="com.ecommerce.action.WelcomeAction">
+     	    <result name="success" type="tiles">welcomePageLayout</result>
+     	</action>
+     	<action name="search" class="com.ecommerce.action.SearchAction">
+    	    <result name="product" type="tiles">listProductLayout</result>
+    	    <result name="user" type="tiles">listUserLayout</result>
+     	</action>
+     	
+    </package>
+    
+    <package name="product" extends="default,json-default" namespace="/product">
+    
+        <action name="loadReviews" class="com.ecommerce.action.product.LoadReviewsAction">
+        	<result name="success">/WEB-INF/content/jsp/product/reviews.jsp</result>
+        </action>
+        
+     	<action name="addReview" class="com.ecommerce.action.product.AddReviewAction">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="productName">${productName}</param>
+    	   </result>
+     	</action>
+     	
+    	<action name="show" class="com.ecommerce.action.product.ShowProductAction"
+    			method="show">
+    	    <result name="success" type="tiles">productPageLayout</result>
+    	    <result name="missing" type="redirectAction">
+    	    		<param name="namespace">/</param>
+    	    		<param name="actionName">search</param>
+    	    		<param name="query">${productName}</param>
+    	    		<param name="type">product</param>
+    	    </result>
+    	</action>
+    	
+    	<action name="editProduct" class="com.ecommerce.action.product.CreateEditAction"
+    			method="editProduct">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="productName">${productName}</param>
+    	   </result>
+    	   <result name="input" type="tiles">editProductLayout</result>
+    	</action>
+    	
+    	<action name="loadEdit" class="com.ecommerce.action.product.LoadEdit">
+    		<result name="success" type="tiles">editProductLayout</result>
+    	</action>
+    	
+    	<action name="loadCreate">
+    		<result name="success" type="tiles">createProductLayout</result>
+    	</action>
+    	
+    	<action name="createProduct" class="com.ecommerce.action.product.CreateEditAction"
+    			method="createProduct">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="productName">${productName}</param>
+    	   </result>
+    	   <result name="input" type="tiles">createProductLayout</result>
+    	</action>
+    	
+    	<action name="deleteProduct" class="com.ecommerce.action.product.DeleteProductAction">
+    	    <interceptor-ref name="authAwareStack"/>
+    		<result name="success" type="redirectAction">
+				<param name="actionName">welcome</param>
+			    <param name="namespace">/</param>	
+    		</result> 
+    	</action>
+    	
+    	<action name="category" class="com.ecommerce.action.product.ShowProductAction"
+    			method="listCategory">
+    		<result name="success" type="tiles">showCategoryLayout</result>
+    	</action>
+    	
+    	<action name="loadCategory" class="com.ecommerce.action.product.ShowCategoryAction"
+    			method="execute">
+    		<result name="success">/WEB-INF/content/jsp/base/carouselCat.jsp</result>
+    	</action>
+    	
+    </package>
+    
+    <package name="user" extends="default" namespace="/user">
+    
+		<interceptors>
+			<interceptor name="authAwareInterceptor" class="com.ecommerce.interceptor.AuthInterceptor"/>
+			<interceptor-stack name="authAwareStack">
+			  <interceptor-ref name="authAwareInterceptor"/>
+			  <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+   		<action name="login">
+   			<result name="success" type="tiles">login</result>
+   		</action> 
+   		
+    	<action name="show" class="com.ecommerce.action.user.ShowUserAction"
+    			method="show">
+    	    <interceptor-ref name="authAwareStack"/>
+    	    <result name="success" type="tiles">userPageLayout</result>
+    	</action>
+    	
+    	<action name="editUser" class="com.ecommerce.action.user.CreateEditAction"
+    			method="editUser">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="username">${username}</param>
+    	   </result>
+    	   <result name="input" type="tiles">editUserLayout</result>
+    	</action>
+    	
+    	<action name="createUser" class="com.ecommerce.action.user.CreateEditAction"
+    		method="createUser">
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="username">${user.username}</param>
+    	   </result>
+    	   <result name="input" type="tiles">createUserLayout</result>
+    	</action>
+    	
+    	<action name="deleteUser" class="com.ecommerce.action.user.DeleteUserAction">
+    	    <interceptor-ref name="authAwareStack"/>
+    		<result name="success" type="redirectAction">
+				<param name="actionName">welcome</param>
+			    <param name="namespace">/admin</param>	
+    		</result> 
+    	</action>
+    	
+    	<action name="loadEdit" class="com.ecommerce.action.user.LoadEdit">
+    		<result name="success" type="tiles">editUserLayout</result>
+    	</action>
+    	
+    	<action name="loadCreate">
+    		<result name="success" type="tiles">createUserLayout</result>
+    	</action>
+
+    </package>
+    
+	<package name="util" extends="struts-default" namespace="/util">
+	
+		<result-types>
+        	<result-type name="imageBytesResult" class="com.ecommerce.action.result.ImageBytesResult"/>
+    	</result-types>
+    	
+    	<action name="loadImage" class="com.ecommerce.action.util.LoadImageAction">
+        	<result  name="ImageResult" type="imageBytesResult">
+            	<param name="contentType">${imageContentType}</param>
+            	<param name="contentDisposition">${imageContentDisposition}</param>
+        	</result>
+        	<result name="error">/errorLoad.jsp</result>
+    	</action>
+    	
+    </package>
+    <package name="cart" extends="json-default,default" namespace="/cart">
+
+      
+      <action name="cart" class="com.ecommerce.action.user.CartAction" 
+      		method="loadCart">
+    	<interceptor-ref name="authAwareStack"/>
+      	<result name="success" type="json"/>
+      </action>
+      
+      <action name="addItem" class="com.ecommerce.action.user.CartAction" 
+      		method="addItem">
+    	    <interceptor-ref name="authAwareStack"/>
+      	    <result name="success" type="redirectAction">
+      			<param name="namespace">/order</param>
+      			<param name="actionName">checkout</param>
+      	    </result>
+      </action>
+      
+      <action name="removeItem" class="com.ecommerce.action.user.CartAction"
+      		method="removeItem">
+    	    <interceptor-ref name="authAwareStack"/>
+      	<result name="success" type="redirectAction">
+      		<param name="namespace">/order</param>
+      		<param name="actionName">checkout</param>
+      	</result>		
+      </action>
+      
+      
+    </package>
+    <package name="order" extends="default" namespace="/order">
+    
+    	<action name="order" class="com.ecommerce.action.user.OrderAction">
+    	    <interceptor-ref name="authAwareStack"/>
+    		<result name="success" type="redirectAction">
+    			<param name="namespace">/user</param>
+    			<param name="actionName">show</param>
+    			<param name="username">${user.username}</param>
+    		</result>
+    		<result name="input" type="tiles">orderInputLayout</result>
+    	</action>
+    	
+    	<action name="checkout" class="com.ecommerce.action.user.CheckoutAction">
+    	    <interceptor-ref name="authAwareStack"/>
+    		<result name="success" type="tiles">checkoutLayout</result>
+    	</action>
+    	
+        <action name="getOrders" class="com.ecommerce.action.user.GetUserOrdersAction">
+    	    <interceptor-ref name="authAwareStack"/>
+       	    <result name="success">/WEB-INF/content/jsp/user/orders.jsp</result>
+        </action>
+      
+        <action name="getOrderXls" class="com.ecommerce.action.user.GetOrdersAsXlsAction"
+                method="gerOrderAsXls">
+     	    <interceptor-ref name="authAwareStack"/>
+     	    <result name="success" type="stream">
+     	    	<param name="contentType">application/vnd.ms-excel</param>
+     	    	<param name="inputName">inputStream</param>
+     	    	<param name="contentDisposition">attachment; filename="${fileName}"</param>
+     	    	<param name="bufferSize">1024</param>
+     	    	<param name="contentLength">${contentLength}</param>
+     	    </result>       	        
+       	</action>
+       	
+       	<action name="getAllOrdersXls" class="com.ecommerce.action.user.GetOrdersAsXlsAction"
+                method="gerOrdersAsXls">
+     	    <interceptor-ref name="authAwareStack"/>
+     	    <result name="success" type="stream">
+     	    	<param name="contentType">application/vnd.ms-excel</param>
+     	    	<param name="inputName">inputStream</param>
+     	    	<param name="contentDisposition">attachment; filename="${fileName}"</param>
+     	    	<param name="bufferSize">1024</param>
+     	    	<param name="contentLength">${contentLength}</param>
+     	    </result>       	        
+       	</action>
+       	
+    </package>
+    
+    <package name="message" extends="json-default,default" namespace="/message">
+    
+    	<action name="sendMessage" class="com.ecommerce.action.message.MessageAction"
+    	        method="sendMessage">
+    	    <interceptor-ref name="authAwareStack"/>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">user-messages</param>
+    		</result>
+    	</action>
+
+    	<action name="addMessage" class="com.ecommerce.action.message.MessageAction"
+    			method="addMessage">
+    	    <interceptor-ref name="authAwareStack"/>
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">user-messages</param>
+    		</result>
+    	</action>
+    	
+    	<action name="user-messages" class="com.ecommerce.action.message.ChatAction"
+    			method="userChats">
+    	    <interceptor-ref name="authAwareStack"/>
+     		<result name="success" type="tiles">userMessagesLayout</result>
+    	</action>
+    	
+    	<action name="loadChat" class="com.ecommerce.action.message.ChatAction"
+    			method="loadChat">
+    	    <interceptor-ref name="authAwareStack"/>
+     		<result name="success">
+     		  /WEB-INF/content/jsp/user/chat.jsp
+    		</result>      	
+    	</action>
+    	
+    	<action name="unread-count" class="com.ecommerce.action.message.UnreadCountAction"
+    			method="unreadCount">
+    	    <interceptor-ref name="authAwareStack"/>
+      		<result name="success" type="json"/>
+    	</action>
+    	
+    	<action name="unread-messages" class="com.ecommerce.action.message.RetrieveUnreadMessagesAction"
+    			method="unread">
+    	    <interceptor-ref name="authAwareStack"/>
+      		<result name="success" type="json"/>
+    	</action>
+    
+    </package>
+    
+    <package name="admin" extends="json-default,default" namespace="/admin">
+    
+
+      <action name="log" class="com.ecommerce.action.admin.LogAction">
+      	<result name="success">
+      	  /WEB-INF/content/jsp/admin/log.jsp
+      	</result>
+      </action>
+    
+       <action name="welcome" class="com.ecommerce.action.admin.WelcomeAction">
+    	 <interceptor-ref name="authAwareStack"/>
+         <result name="success">/WEB-INF/content/jsp/admin/admin.jsp</result>
+       </action>
+       
+       <action name="sysload" class="com.ecommerce.action.admin.SysInfoAction"
+       		   method="loadAverage">
+       	<result name="success">/WEB-INF/content/jsp/admin/sysload.jsp</result>
+       </action>
+       
+       <action name="uptime" class="com.ecommerce.action.admin.SysInfoAction"
+       		   method="uptime">
+       		<result name="success">/WEB-INF/content/jsp/admin/uptime.jsp</result>
+       </action>
+       
+      <action name="disable" class="com.ecommerce.action.admin.UserLockAction" method="disable">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/user</param>
+				<param name="username">${username}</param>
+    	   </result>
+      </action>
+      
+      <action name="enable" class="com.ecommerce.action.admin.UserLockAction" method="enable">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/user</param>
+				<param name="username">${username}</param>
+    	   </result>
+      </action>
+      
+      <action name="changeRole" class="com.ecommerce.action.admin.ChangeUserRoleAction">
+     	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/user</param>
+				<param name="username">${username}</param>
+    	   </result>
+    	   <result name="input" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/user</param>
+				<param name="username">${username}</param>
+    	   </result>      
+      </action>
+      
+      <action name="addFeatured" class="com.ecommerce.action.admin.ProductFeatureAction"  
+      		  method="addToFeatured">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/product</param>
+				<param name="productName">${productName}</param>
+      	   </result> 
+      </action>
+      
+      <action name="removeFeatured" class="com.ecommerce.action.admin.ProductFeatureAction"  
+      		  method="removeFromFeatured">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/product</param>
+				<param name="productName">${productName}</param>
+      	   </result> 
+      </action>
+      
+      <action name="addSale" class="com.ecommerce.action.admin.ProductFeatureAction"  
+      		  method="putOnSale">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/product</param>
+				<param name="productName">${productName}</param>>
+      	   </result> 
+      </action>
+      
+      <action name="removeSale" class="com.ecommerce.action.admin.ProductFeatureAction"  
+      		  method="takeOffSale">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirectAction">
+				<param name="actionName">show</param>
+				<param name="namespace">/product</param>
+				<param name="productName">${productName}</param>
+      	   </result> 
+      </action>
+      
+      <action name="countTasks" class="com.ecommerce.action.admin.CountUserTasksAction">
+    	   <interceptor-ref name="authAwareStack"/>
+		   <result name="success" type="json"/>              
+      </action>
+      
+      <action name="retrieveTasks" class="com.ecommerce.action.admin.RetrieveTasksAction"
+              method="retrieveTasks">
+    	   <interceptor-ref name="authAwareStack"/>
+		   <result name="success">/WEB-INF/content/jsp/admin/tasks.jsp</result>              
+      </action>
+
+      <action name="latestTasks" class="com.ecommerce.action.admin.RetrieveTasksAction"
+              method="latestTasks">
+    	   <interceptor-ref name="authAwareStack"/>
+		   <result name="success">/WEB-INF/content/jsp/admin/tasks.jsp</result>              
+      </action>
+      
+      <action name="pendingTasks" class="com.ecommerce.action.admin.RetrieveTasksAction"
+              method="pendingTasks">
+    	   <interceptor-ref name="authAwareStack"/>
+		   <result name="success" type="json"/>              
+      </action>
+      
+      <action name="userTasks" class="com.ecommerce.action.admin.RetrieveTasksAction"
+              method="userTasks">
+    	   <interceptor-ref name="authAwareStack"/>
+		   <result name="success">/WEB-INF/content/jsp/admin/tasks.jsp</result>              
+      </action>
+
+	  <action name="addTask" class="com.ecommerce.action.admin.TasksAction"
+	  		  method="addTask">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirect">
+    	   		<param name="actionName">welcome</param>
+    	   </result>
+	  </action>
+	 
+	  <action name="completeTask" class="com.ecommerce.action.admin.TasksAction"
+	  		  method="completeTask">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirect">
+    	   		<param name="actionName">welcome</param>
+    	   </result>
+	  </action>
+	  
+	  <action name="removeTask" class="com.ecommerce.action.admin.TasksAction"
+	  		  method="removeTask">
+    	   <interceptor-ref name="authAwareStack"/>
+    	   <result name="success" type="redirect">
+    	   		<param name="actionName">welcome</param>
+    	   </result>
+	  </action>
+	  
+    </package>
+    
+</struts>
