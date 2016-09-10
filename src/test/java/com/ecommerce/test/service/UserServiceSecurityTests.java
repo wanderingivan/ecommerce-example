@@ -17,6 +17,7 @@ import org.springframework.security.acls.domain.PrincipalSid;
 import org.springframework.security.acls.model.MutableAcl;
 import org.springframework.security.acls.model.MutableAclService;
 import org.springframework.security.acls.model.ObjectIdentity;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -26,7 +27,6 @@ import com.ecommerce.dao.UserDao;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import com.ecommerce.test.dao.AbstractDBTest;
-import com.ecommerce.util.CommonUtility;
 
 
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
@@ -63,7 +63,7 @@ public class UserServiceSecurityTests extends AbstractDBTest {
 	@Test(expected=AccessDeniedException.class)
 	@WithMockUser(username="username1",password="password",authorities={"ROLE_USER"})
 	public void testAccessDeniedExceptionFromAcl(){
-		User testUser = CommonUtility.createUserBean(2, "username2",null,null,null,null,null);
+		User testUser = new User(2, "username2",null,null,null,null,null);
 		service.editUser(testUser);
 	}
 	
@@ -73,7 +73,7 @@ public class UserServiceSecurityTests extends AbstractDBTest {
 	@Test
 	@WithMockUser(username="username2",password="password",authorities={"ROLE_USER"})
 	public void testAccessGrantedFromAcl(){
-		User testUser = CommonUtility.createUserBean(2, "username2",null,null,null,null,null);
+		User testUser = new User(2, "username2",null,null,null,null,null);
 		service.editUser(testUser);
 		Mockito.verify(mockDao,Mockito.times(1)).editUser(testUser);
 	}
@@ -85,15 +85,16 @@ public class UserServiceSecurityTests extends AbstractDBTest {
 	@Test
 	@WithMockUser(username="username3",password="password",authorities={"ROLE_ADMIN"})
 	public void testAccessGrantedToAdmin(){
-		User testUser = CommonUtility.createUserBean(2, "username2",null,null,null,null,null);
+		User testUser = new User(2, "username2",null,null,null,null,null);
 		service.editUser(testUser);
 		Mockito.verify(mockDao,Mockito.times(1)).editUser(testUser);
 	}	
 
 	
 	@Test
+	@WithAnonymousUser
 	public void testAclCreation(){
-		User testUser = CommonUtility.createUserBean(3, "username2",null,null,null,null,null);
+		User testUser = new User(3, "username2","password",null,null,null,null);
 		MutableAcl mockAcl = Mockito.mock(MutableAcl.class);
 		Mockito.when(mockDao.saveUser(testUser))
 		       .thenReturn(Long.valueOf(3));

@@ -48,7 +48,7 @@ public interface UserService {
 	@PreAuthorize("hasRole('ROLE_ADMIN') OR hasPermission(#user, 'WRITE')")
 	void editUser(User user);
 
-	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("isAnonymous()")
 	void saveUser(User user);
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
