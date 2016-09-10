@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:cache="http://www.springframework.org/schema/cache"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd  
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache-4.1.xsd
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+	<context:component-scan base-package="com.ecommerce"/>
+   	<context:annotation-config/>
+   	<cache:annotation-driven />
+   	
+    <bean id="mockAclService" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="org.springframework.security.acls.jdbc.JdbcMutableAclService"/>
+    </bean>	
+   	
+   	<bean id='cacheManager'
+    class='org.springframework.cache.support.NoOpCacheManager'
+    />
+    
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="12"/>
+	</bean>
+
+	<bean id="mockImageService" class="org.mockito.Mockito" factory-method="mock">
+		<constructor-arg value="com.ecommerce.service.ImageService"/>
+	</bean>
+    <bean id="mockImageUtil" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="com.ecommerce.util.ImageUtil"/>
+    </bean>	
+    
+
+  	<util:map id="defaultPaths" key-type="java.lang.String" value-type="java.lang.String">
+ 		<entry key="productPic" value="${image.productPicPath}"/>
+  		<entry key="profilePic" value="${image.profilePicPath}"/>
+  	</util:map> 
+   	<import resource="testDbUnitContext.xml"/>
+</beans>

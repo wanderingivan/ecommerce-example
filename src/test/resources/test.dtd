@@ -1,0 +1,147 @@
+<!ELEMENT dataset (
+    users*,
+    products*,
+    featured+,
+    carts+,
+    orders+,
+    reviews*,
+    carts_products*,
+    orders_products*,
+	chats*,
+	chat_messages*,	
+	chats_join_table*,
+    tasks*,
+    authorities?
+)>
+
+<!ELEMENT users EMPTY>
+<!ATTLIST users
+    user_id CDATA #IMPLIED
+    username CDATA #REQUIRED
+    address CDATA #REQUIRED
+    email CDATA #REQUIRED
+    password CDATA #REQUIRED
+    enabled CDATA #REQUIRED
+    details CDATA #IMPLIED
+    imagePath CDATA #IMPLIED
+    locked CDATA #IMPLIED
+>
+
+<!ELEMENT products EMPTY>
+<!ATTLIST products 
+    product_id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    user_id CDATA #REQUIRED
+    category CDATA #REQUIRED
+    description CDATA #REQUIRED
+    imagePath CDATA #REQUIRED
+    created CDATA #IMPLIED
+    hits CDATA #IMPLIED
+    sold CDATA #IMPLIED
+    sale CDATA #IMPLIED
+    featured CDATA #IMPLIED
+    price CDATA #REQUIRED
+>
+<!ELEMENT featured EMPTY>
+<!ATTLIST featured 
+	product_id CDATA #REQUIRED
+	added CDATA #IMPLIED
+>
+<!ELEMENT details EMPTY>
+<!ATTLIST details 
+	detail_id CDATA #IMPLIED
+	message CDATA #REQUIRED
+	product_id CDATA #REQUIRED
+>
+
+<!ELEMENT reviews EMPTY>
+<!ATTLIST reviews 
+	review_id CDATA #IMPLIED
+	message CDATA #REQUIRED
+	user_id CDATA #REQUIRED
+	product_id CDATA #REQUIRED
+>
+
+<!ELEMENT groups EMPTY>
+<!ATTLIST groups 
+	id CDATA #IMPLIED
+	group_name CDATA #REQUIRED
+>
+
+<!ELEMENT group_members EMPTY>
+<!ATTLIST group_members 
+	id CDATA #IMPLIED
+	username CDATA #REQUIRED
+	group_id CDATA #REQUIRED
+>
+
+<!ELEMENT group_authorities EMPTY>
+<!ATTLIST group_authorities 
+	group_id CDATA #REQUIRED
+	authority CDATA #REQUIRED
+>
+
+<!ELEMENT carts EMPTY>
+<!ATTLIST carts
+	cart_id CDATA #IMPLIED
+	user_id CDATA #REQUIRED
+
+>
+
+<!ELEMENT orders EMPTY>
+<!ATTLIST orders
+	order_id CDATA #IMPLIED
+	user_id CDATA #REQUIRED
+	sold CDATA #IMPLIED
+	sent CDATA #IMPLIED
+	address CDATA #IMPLIED
+>
+
+<!ELEMENT orders_products EMPTY>
+<!ATTLIST orders_products
+	order_id CDATA #REQUIRED 
+	product_id CDATA #REQUIRED
+>
+
+<!ELEMENT carts_products EMPTY>
+<!ATTLIST carts_products
+	cart_id CDATA #REQUIRED 
+	product_id CDATA #REQUIRED
+>
+
+
+<!ELEMENT chats_join_table EMPTY>
+<!ATTLIST chats_join_table
+	chat_id CDATA #REQUIRED
+	user_id CDATA #REQUIRED
+>
+
+<!ELEMENT chat_messages EMPTY>
+<!ATTLIST chat_messages
+	message_id CDATA #IMPLIED
+	message CDATA #REQUIRED
+	sent CDATA #IMPLIED
+	chat_id CDATA #REQUIRED
+	sender_id CDATA #REQUIRED
+>
+
+<!ELEMENT chats EMPTY>
+<!ATTLIST chats
+	chat_id CDATA #IMPLIED
+	lastUpdate CDATA #IMPLIED
+>
+
+<!ELEMENT tasks EMPTY>
+<!ATTLIST tasks
+	task_id CDATA #IMPLIED
+	name CDATA #REQUIRED
+	description CDATA #REQUIRED
+	assigner CDATA #REQUIRED
+	assignee CDATA #REQUIRED
+>
+
+<!ELEMENT authorities EMPTY>
+<!ATTLIST authorities
+	username CDATA #REQUIRED 
+	authority CDATA #REQUIRED 
+>
