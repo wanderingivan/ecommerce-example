@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+
+<tiles-definitions>
+	<definition name="basePageLayout" template="/WEB-INF/content/jsp/base/basePageLayout.jsp">
+		<put-attribute name="title" type="string" value=""/>
+		<put-attribute name="header" value="/WEB-INF/content/jsp/base/header.jsp"/>
+		<put-attribute name="main" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/content/jsp/base/footer.jsp"/>
+	</definition>
+	
+	<definition name="welcomePageLayout" extends="basePageLayout">		
+		<put-attribute name="title" type="string" value="Prototype Main Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/base/index.jsp"/>
+	</definition>
+	
+	<definition name="productPageLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Product Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/product/showProduct.jsp"/>
+	</definition>
+	
+	<definition name="listProductLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype List Page"/>
+	    <put-attribute name="main" value="/WEB-INF/content/jsp/product/list.jsp"/>
+	</definition>
+	
+	<definition name="createProductLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Create Product Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/product/create.jsp"/>
+	</definition>
+
+	<definition name="showCategoryLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Category Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/category/index.jsp"/>
+	</definition>
+
+	<definition name="createProductLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Create Product Page"/>
+	    <put-attribute name="main" value="/WEB-INF/content/jsp/product/create.jsp"/>
+	</definition>
+	<definition name="editProductLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Edit Product Page"/>
+	    <put-attribute name="main" value="/WEB-INF/content/jsp/product/edit.jsp"/>
+	</definition>
+	<definition name="createUserLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Create User Page"/>
+	    <put-attribute name="main" value="/WEB-INF/content/jsp/user/create.jsp"/>
+	</definition>
+	<definition name="editUserLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Edit User Page"/>
+	    <put-attribute name="main" value="/WEB-INF/content/jsp/user/edit.jsp"/>
+	</definition>
+	<definition name="userPageLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype User Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/showUser.jsp"/>
+	</definition>
+
+	<definition name="listUserLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype List Page"/>
+	    <put-attribute name="main" value="/WEB-INF/content/jsp/user/list.jsp"/>
+	</definition>
+	
+	<definition name="userMessagesLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Messages Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/messages.jsp"/>
+	</definition>
+	<definition name="orderSuccessLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype OrderSuccess Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/success.jsp"/>
+	</definition>
+	<definition name="orderInputLayout" extends="basePageLayout">
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/order-input.jsp"/>
+	</definition>
+	<definition name="checkoutLayout" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Checkout Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/checkout.jsp"/>
+	</definition>
+	<definition name="test" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Prototype Checkout Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/user/test.jsp"/>
+	</definition>
+	<definition name="login" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="Login Page"/>
+		<put-attribute name="main" value="/login.jsp"/>
+	</definition>
+	<definition name="404" extends="basePageLayout">
+		<put-attribute name="title" type="string" value="404 Page"/>
+		<put-attribute name="main" value="/WEB-INF/content/jsp/base/404.jsp"/>
+	</definition>
+</tiles-definitions>
