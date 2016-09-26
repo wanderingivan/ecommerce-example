@@ -25,9 +25,7 @@ public class SimpleAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 	public void onAuthenticationFailure(HttpServletRequest request,
 				HttpServletResponse response, AuthenticationException exception) 
 							throws ServletException,IOException{
-		logger.error("Failed Authenticating user");
-		logger.error("Request was: "+request);
-		logger.error("Exception was: "+exception);
+		logger.error(String.format("Failed Authenticating user\n Request was: %s Exception was: %s",request,exception));
 		super.onAuthenticationFailure(request, response, exception);
 	}
 

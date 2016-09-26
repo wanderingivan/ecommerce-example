@@ -58,7 +58,6 @@ public class SavedRequestRoleBasedAuthenticationSuccessHandler extends
 			HttpServletResponse response, Authentication authentication)
 					throws IOException, ServletException {
 		
-		logger.info("Successfull auth from " + authentication);
 		
 		String targetUrl = getTargetUrlFromCache(request, response);
 		
