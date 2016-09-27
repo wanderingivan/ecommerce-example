@@ -107,7 +107,7 @@ public class ProductDaoTests extends AbstractDBTest {
 	@Test
 	@Transactional
 	public void testCreateProduct(){
-		Product p = new Product(0,"product11","cat", "desc", "/home/shadow1207/test/product.png", new BigDecimal(14.67), null);
+		Product p = new Product(0,"product11","cat", "desc", "product.png", new BigDecimal(14.67), null);
 		dao.createProduct(p,3);
 		assertNotNull(getProduct("product11"));
 	}
@@ -115,7 +115,7 @@ public class ProductDaoTests extends AbstractDBTest {
 	@Test(expected=DuplicateProductNameException.class)
 	@Transactional
 	public void testCreateProductDuplicateKeyException(){
-		Product p = new Product(0,"product10", "cat", "desc", "/home/shadow1207/test/product.png", new BigDecimal(14.67), null);
+		Product p = new Product(0,"product10", "cat", "desc", "product.png", new BigDecimal(14.67), null);
 		dao.createProduct(p,3);
 	}
 	

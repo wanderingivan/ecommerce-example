@@ -2,22 +2,22 @@
 <!DOCTYPE dataset PUBLIC "//UNKNOWN/" "test.dtd">
 
 <dataset>
-	<users user_id="1" username="username1" email="some@email" password="Bar" enabled="1" locked="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="test description1" address="test address"/>
-	<users user_id="2" username="username2" email="some@email1" password="Bar" enabled="1" locked="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description" address="address"/>
-	<users user_id="3" username="username3" email="some@email2" password="Bar" enabled="1" locked="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description" address="address"/>
-	<users username="username4" email="some@email3" password="Bar" enabled="1" locked="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description" address="address"/>
-	<users username="username5" email="some@email4"  password="Bar" enabled="1" locked="1" imagePath="/home/shadow1207/Examples/Bootstrap/NewsSite/img/350x350ProfilePic.png" details="Placeholder Description" address="address"/>
+	<users user_id="1" username="username1" email="some@email" password="Bar" enabled="1" locked="1" imagePath="350x350ProfilePic.png" details="test description1" address="test address"/>
+	<users user_id="2" username="username2" email="some@email1" password="Bar" enabled="1" locked="1" imagePath="350x350ProfilePic.png" details="Placeholder Description" address="address"/>
+	<users user_id="3" username="username3" email="some@email2" password="Bar" enabled="1" locked="1" imagePath="350x350ProfilePic.png" details="Placeholder Description" address="address"/>
+	<users username="username4" email="some@email3" password="Bar" enabled="1" locked="1" imagePath="350x350ProfilePic.png" details="Placeholder Description" address="address"/>
+	<users username="username5" email="some@email4"  password="Bar" enabled="1" locked="1" imagePath="350x350ProfilePic.png" details="Placeholder Description" address="address"/>
 
-	<products product_id="1" name="product1" user_id="1" category="cat" hits="1" sold="1" featured="1" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="1"/>
-	<products product_id="2" name="product2" user_id="1" category="cat" hits="2" sold="2" featured="1" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="0"/>
-	<products product_id="3" name="product3" user_id="1" category="cat" hits="3" sold="2" featured="1" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="1"/>
-	<products product_id="4" name="product4" user_id="2" category="cat" hits="4" sold="3" featured="1" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="1"/>
-	<products product_id="5" name="product5" user_id="3" category="cat" hits="5" sold="4" featured="0" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="0"/>
-	<products name="product6" user_id="3" category="cat" hits="6" sold="5" featured="0" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="0"/>
-	<products name="product7" user_id="2" category="cat" hits="7" sold="6" featured="0" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="1"/>
-	<products name="product8" user_id="2" category="cat2" hits="8" sold="6" featured="0" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="1"/>
-	<products name="product9" user_id="1" category="cat2" hits="9" sold="6" featured="0" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="0"/>
-	<products name="product10" user_id="1" category="cat" hits="3" sold="4" featured="0" imagePath="/home/shadow1207/test/product.png" description="description" price="10.30" sale="1"/>
+	<products product_id="1" name="product1" user_id="1" category="cat" hits="1" sold="1" featured="1" imagePath="product.png" description="description" price="10.30" sale="1"/>
+	<products product_id="2" name="product2" user_id="1" category="cat" hits="2" sold="2" featured="1" imagePath="product.png" description="description" price="10.30" sale="0"/>
+	<products product_id="3" name="product3" user_id="1" category="cat" hits="3" sold="2" featured="1" imagePath="product.png" description="description" price="10.30" sale="1"/>
+	<products product_id="4" name="product4" user_id="2" category="cat" hits="4" sold="3" featured="1" imagePath="product.png" description="description" price="10.30" sale="1"/>
+	<products product_id="5" name="product5" user_id="3" category="cat" hits="5" sold="4" featured="0" imagePath="product.png" description="description" price="10.30" sale="0"/>
+	<products name="product6" user_id="3" category="cat" hits="6" sold="5" featured="0" imagePath="product.png" description="description" price="10.30" sale="0"/>
+	<products name="product7" user_id="2" category="cat" hits="7" sold="6" featured="0" imagePath="product.png" description="description" price="10.30" sale="1"/>
+	<products name="product8" user_id="2" category="cat2" hits="8" sold="6" featured="0" imagePath="product.png" description="description" price="10.30" sale="1"/>
+	<products name="product9" user_id="1" category="cat2" hits="9" sold="6" featured="0" imagePath="product.png" description="description" price="10.30" sale="0"/>
+	<products name="product10" user_id="1" category="cat" hits="3" sold="4" featured="0" imagePath="product.png" description="description" price="10.30" sale="1"/>
 
 	<featured product_id="1"/>
 	<featured product_id="2"/>

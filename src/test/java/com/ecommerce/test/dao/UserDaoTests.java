@@ -64,14 +64,14 @@ public class UserDaoTests extends AbstractDBTest {
 		
 		dao.deleteUser(3);
 		assertNull(getUser("username3"));
-		User u = new User(0,"username6", "pass", "det", "/home/shadow1207/test/a8a8a8.png", "ad", "email@email.com");
+		User u = new User(0,"username6", "pass", "det", "a8a8a8.png", "ad", "email@email.com");
 		dao.saveUser(u);
 	}
 	
 	@Test
 	@Transactional
 	public void testUserCreate(){
-		User u = new User(0,"username6", "pass", "det", "/home/shadow1207/test/a8a8a8.png", "ad", "email@email.com");
+		User u = new User(0,"username6", "pass", "det", "a8a8a8.png", "ad", "email@email.com");
 		dao.saveUser(u);
 		assertNotNull(getUser("username6"));
 	}
@@ -79,7 +79,7 @@ public class UserDaoTests extends AbstractDBTest {
 	@Test(expected=DuplicateUsernameException.class)
 	@Transactional
 	public void testUserCreateDuplicateUsername(){
-		User u = new User(0,"username1", "pass", "det", "/home/shadow1207/test/a8a8a8.png", "ad", "email@email.com");
+		User u = new User(0,"username1", "pass", "det", "a8a8a8.png", "ad", "email@email.com");
 		dao.saveUser(u);
 	}
 
@@ -87,7 +87,7 @@ public class UserDaoTests extends AbstractDBTest {
 	@Transactional
 	public void testUserCreateDuplicateEmail(){
 		assertNull(getUser("username6"));
-		User u = new User(0,"username6", "pass", "det", "/home/shadow1207/test/a8a8a8.png", "ad", "some@email");
+		User u = new User(0,"username6", "pass", "det", "a8a8a8.png", "ad", "some@email");
 		dao.saveUser(u);
 	}
 	
