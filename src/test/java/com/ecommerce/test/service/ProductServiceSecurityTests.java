@@ -27,7 +27,6 @@ import com.ecommerce.model.Product;
 import com.ecommerce.model.User;
 import com.ecommerce.service.ProductService;
 import com.ecommerce.test.dao.AbstractDBTest;
-import com.ecommerce.util.CommonUtility;
 
 
 @DirtiesContext(classMode=ClassMode.AFTER_EACH_TEST_METHOD)
@@ -66,7 +65,7 @@ public class ProductServiceSecurityTests extends AbstractDBTest {
 	@Test(expected=AccessDeniedException.class)
 	@WithMockUser(username="username1",password="password",authorities={"ROLE_USER"})
 	public void testAccessDeniedExceptionFromAcl(){
-		Product testProduct = CommonUtility.createProductBean(2,"productname2");
+		Product testProduct = new Product(2,"productname2",null,null,null,null,null);
 		service.editProduct(testProduct);
 	}
 	
@@ -76,7 +75,7 @@ public class ProductServiceSecurityTests extends AbstractDBTest {
 	@Test
 	@WithMockUser(username="username2",password="password",authorities={"ROLE_USER"})
 	public void testAccessGrantedFromAcl(){
-		Product testProduct = CommonUtility.createProductBean(2,"productname2");
+		Product testProduct = new Product(2,"productname2",null,null,null,null,null);
 		service.editProduct(testProduct);
 		Mockito.verify(mockDao,Mockito.times(1)).editProduct(testProduct);
 	}
@@ -88,7 +87,7 @@ public class ProductServiceSecurityTests extends AbstractDBTest {
 	@Test
 	@WithMockUser(username="username3",password="password",authorities={"ROLE_ADMIN"})
 	public void testAccessGrantedToAdmin(){
-		Product testProduct = CommonUtility.createProductBean(2,"productname2");
+		Product testProduct = new Product(2,"productname2",null,null,null,null,null);
 		service.editProduct(testProduct);
 		Mockito.verify(mockDao,Mockito.times(1)).editProduct(testProduct);
 	}	
@@ -97,7 +96,7 @@ public class ProductServiceSecurityTests extends AbstractDBTest {
 	@Test
 	@WithMockUser(username="username3",password="password",authorities={"ROLE_USER"})
 	public void testProductAclCreation(){
-		Product testProduct = CommonUtility.createProductBean(3,"productname2");
+		Product testProduct = new Product(3,"productname2",null,null,null,null,null);
 		User testUser = new User();
 		testUser.setId(2);
 		testUser.setUsername("username3");

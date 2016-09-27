@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -52,6 +54,7 @@ public class HitResolver {
 		executor.execute(new UpdateMapRunnable(p));
 	}
 	
+	@PreDestroy
 	public void cleanUp(){
 		shutdownAndAwaitTermination();
 	}
