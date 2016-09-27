@@ -24,10 +24,10 @@ public class User implements UserDetails{
 	private long id;
 	
 	private String username,
-				   address,
-				   details,
 				   password,
+				   details,
 				   imagePath,
+				   address,
 				   email;
 
 	private boolean locked,
@@ -48,6 +48,30 @@ public class User implements UserDetails{
 	public User() {
 		super();
 	}
+
+	
+	
+	public User(long id) {
+		super();
+		this.id = id;
+	}
+
+	
+	
+
+	public User(long id, String username, String password, String details,
+			String imagePath, String address, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.details = details;
+		this.imagePath = imagePath;
+		this.address = address;
+		this.email = email;
+	}
+
+
 
 	public long getId() {
 		return id;

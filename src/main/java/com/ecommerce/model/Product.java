@@ -38,8 +38,26 @@ public class Product {
 	private List<Review> reviews;
 	
 	
-	public Product (){
+	public Product(){
 		super();
+	}
+	
+	public Product(long id ) {
+		super();
+		this.id = id;
+	}
+
+	public Product(long id, String productName, String category,
+			String description, String imagePath, BigDecimal price,
+			List<String> details) {
+		super();
+		this.id = id;
+		this.productName = productName;
+		this.category = category;
+		this.description = description;
+		this.imagePath = imagePath;
+		this.price = price;
+		this.details = details;
 	}
 
 	public long getId() {
