@@ -2,6 +2,7 @@ package com.ecommerce.util;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.springframework.core.io.ClassPathResource;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -87,7 +88,8 @@ public class ImageUtil {
 			//Do we need conversion
 			if(convertToJpg && contentType != "image/jpg"){
 				image = convertToJpg(ImageIO.read(input));
-				fileName = fileName.substring(0, fileName.length() -4).concat(".jpg");//FIXME Easily breakable  handle with regex instead !!!
+				fileName = fileName.substring(0, fileName.lastIndexOf('.'))
+						           .concat(".jpg");
 			}else{
 				image = ImageIO.read(input);
 			}
@@ -119,7 +121,7 @@ public class ImageUtil {
 				imageOut.close(); // discern whether it actually frees resources e.g in the abstract ImageWriter class dispose() is just 
 				out.close();      // an empty method. Some subclasses have their own implementations of dispose() and some don't
 				       			  // so all resources will be freed manually.
-			}catch(IOException ignore){}
+			}catch(Exception ignore){}
 		}
 		return fileName;
 	}	
@@ -134,7 +136,7 @@ public class ImageUtil {
 		ByteArrayOutputStream baos = null;
 		try {
 			baos = new ByteArrayOutputStream();
-			BufferedImage originalImage = ImageIO.read(new File(defaultDestPath,path));
+			BufferedImage originalImage = ImageIO.read(new ClassPathResource(defaultDestPath.concat(path)).getFile());
 			// convert BufferedImage to byte array
 			ImageIO.write(originalImage, "jpg", baos);			
 			baos.flush();
