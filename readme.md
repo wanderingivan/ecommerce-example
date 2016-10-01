@@ -12,6 +12,7 @@
   4. Update application.properties to include default image folder
    * (Optional) use image folder included at /src/images - application.properties expects absolute path
   5. Execute mvn tomcat7:run
+  6. Load localhost:8080/Ecommerce on your favorite browser
   
  For integration tests an empty database must be created with createDatabase.sql.
  Test datasource configuration will be in /src/test/resources/testDbUnitContext.xml   
