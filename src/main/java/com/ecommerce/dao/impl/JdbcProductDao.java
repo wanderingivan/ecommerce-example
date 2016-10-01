@@ -147,22 +147,26 @@ public class JdbcProductDao implements ProductDao{
 			template.update(insertStatementCreator.newPreparedStatementCreator(new Object[]{p.getProductName(),p.getDescription(),
 																							p.getImagePath(),p.getPrice(),p.getCategory(),userId})
 																				  												     	 ,holder);
+			if(p.getDetails() != null) {
+				insertDetails(p.getDetails(),holder.getKey().longValue());
+			}
 		}catch(DuplicateKeyException de){
 			throw ConstraintExceptionConverter.convertException(de);
-		}
-		if(p.getDetails() != null) {
-			insertDetails(p.getDetails(),holder.getKey().longValue());
 		}
 		return  holder.getKey().longValue();
 	}
 
 	@Override
 	public void editProduct(Product p) {
-		template.update(editProductStatement,new Object[]{p.getProductName(),p.getDescription()
+		try{
+			template.update(editProductStatement,new Object[]{p.getProductName(),p.getDescription()
 												  ,p.getPrice(),p.getCategory(),p.getImagePath(),p.getId()});
 		
-		if(p.getDetails() != null){
-			updateDetails(p.getDetails(),p.getId());
+			if(p.getDetails() != null){
+				updateDetails(p.getDetails(),p.getId());
+			}
+		}catch(DuplicateKeyException de){
+			throw ConstraintExceptionConverter.convertException(de);
 		}
 	}
 
