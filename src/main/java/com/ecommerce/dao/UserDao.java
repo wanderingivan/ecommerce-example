@@ -2,7 +2,6 @@ package com.ecommerce.dao;
 
 import java.util.List;
 
-
 import com.ecommerce.model.Cart;
 import com.ecommerce.model.Order;
 import com.ecommerce.model.User;
@@ -113,4 +112,8 @@ public interface UserDao {
 	List<Order> latestOrders();
 
 	Order getOrder(long orderId);
+
+	void changePassword(String user, String encode);
+
+	String getPassword(String principal);
 }

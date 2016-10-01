@@ -57,7 +57,6 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 	
 			                     editUserStatement = "UPDATE users "
 			                     		              + "SET username =?, "
-			                     		                  + "password=?, "
 			                     		                  + "imagePath=?, "
 			                     		                  + "details=?, "
 			                     		                  + "address=?, "
@@ -210,9 +209,13 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 
 	@Override
 	public void editUser(User user) {
-		template.update(editUserStatement, 
-				new Object[]{user.getUsername(),user.getPassword(),user.getImagePath(),
+		try{
+			template.update(editUserStatement, 
+				new Object[]{user.getUsername(),user.getImagePath(),
 				             user.getDetails(),user.getAddress(),user.getEmail(),user.getId()});
+		}catch(DuplicateKeyException de){
+			throw ConstraintExceptionConverter.convertException(de);
+		}
 	}
 
 
@@ -332,6 +335,17 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 	public List<User> getLatest() {
 		return (List<User>) template.query(latestUsersQuery, userMapper);
 	}
+
+	@Override
+	public void changePassword(String principal, String password) {
+		template.update("UPDATE users SET password = ? WHERE username = ? ", new Object[] {password,principal});
+	}
+
+
+	@Override
+	public String getPassword(String principal) {
+		return template.queryForObject("SELECT password FROM users WHERE username = ?", new Object[]{principal},String.class);
+	}
 	
 	@Override
 	public Order getOrder(long orderId) {
@@ -381,8 +395,5 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 		}
 		return role;
 	}
-
-
-
 
 }

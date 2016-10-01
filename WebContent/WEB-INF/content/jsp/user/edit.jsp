@@ -14,8 +14,8 @@
 		  <s:form action="editUser" namespace="/user" theme="simple" enctype="multipart/form-data">
 		   	<s:hidden name="user.id" value="%{user.id}"/>
 		   	<div class="form-group">
-		   	  <s:fielderror fieldName="user.username" cssClass="alert alert-danger"/>
 		   	  <s:label for="user.username"><s:text name="global.username"/></s:label>
+		   	  <s:fielderror fieldName="user.username" cssClass="alert alert-danger"/>
 		      <s:textfield name="user.username" value="%{user.username}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
@@ -29,19 +29,14 @@
 		      <s:textfield name="user.address" value="%{user.address}" class="form-control"/>
 		    </div>
 		   	<div class="form-group">
-		   	  <s:fielderror fieldName="user.details" cssClass="alert alert-danger"/>
 		   	  <s:label for="user.details"><s:text name="global.description"/></s:label>
+		   	  <s:fielderror fieldName="user.details" cssClass="alert alert-danger"/>
 		      <s:textarea name="user.details" value="%{user.details}" class="form-control"></s:textarea>
 		    </div>
 		   	<div class="form-group">
 		   	  <s:label for="profilePic">Picture</s:label>
 		      <s:file accept="image/jpg" name="profilePic"/>
 		    </div>
-		    <div class="form-group">
-		   	  <s:fielderror fieldName="user.password" cssClass="alert alert-danger"/>
-		      <s:label for="user.password"><s:text name="global.password"/></s:label>
-		      <s:password name="user.password" placeholder="*******" class="form-control"/>
-		     </div>
 		   	 <div class="form-group">
 		       <s:submit value="Upload"/>
 		     </div>

@@ -39,6 +39,10 @@ public class CreateEditAction extends AbstractUserAction implements ModelDriven<
 
 	public String createUser(){
 		try{
+
+			if(!validatePassword(user.getPassword())){
+				return INPUT;
+			}
 			logger.info(String.format("Creating user %s",user));
 			
 			if(profilePic != null){
@@ -144,5 +148,17 @@ public class CreateEditAction extends AbstractUserAction implements ModelDriven<
 	@Override
 	public void setUserDetails(UserDetails userDetails) {
 		this.userDetails = userDetails;
+	}
+
+	private boolean validatePassword(String password) {
+		if(password == null){
+			addFieldError("user.password",getText("global.field_required"));
+			return false;
+		}else if(password.length() < 6 || password.length() > 50){
+			addFieldError("user.password",getText("global.invalid_password"));
+			return false;
+		}else{
+			return true;
+		}
 	}
 }

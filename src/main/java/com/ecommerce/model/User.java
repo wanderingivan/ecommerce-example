@@ -150,11 +150,6 @@ public class User implements UserDetails{
 		this.sale = sale;
 	}
 	
-	@RequiredStringValidator(message="Password is required",fieldName="passwrord", key="global.empty_field")
-	@StringLengthFieldValidator(minLength = "6",
-								maxLength = "25",
-								fieldName="password",
-								key="global.field_between_size")
 	public String getPassword() {
 		return password;
 	}
