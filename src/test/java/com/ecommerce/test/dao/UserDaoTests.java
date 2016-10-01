@@ -188,6 +188,21 @@ public class UserDaoTests extends AbstractDBTest {
 		assertEquals((long) 1,((User) user).getId());
 	}
 	
+
+	@Test
+	@Transactional
+	public void testChangePassword(){
+		dao.changePassword( "username1", "new password");
+		assertEquals("new password", dao.getPassword("username1"));
+	}
+	
+	@Test
+	@Transactional
+	public void testGetPassword(){
+		 assertEquals("Bar",dao.getPassword( "username1"));
+	}
+	
+	
 	@Override
 	protected IDataSet getDataSet() throws MalformedURLException,
 			DataSetException {
