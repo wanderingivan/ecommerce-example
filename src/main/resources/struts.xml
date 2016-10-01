@@ -154,6 +154,19 @@
 			    <param name="namespace">/admin</param>	
     		</result> 
     	</action>
+
+    	<action name="changePasswordPage">
+    		<result name="success" type="tiles">changePasswordLayout</result>
+    	</action>
+    	
+    	<action name="changePassword" class="com.ecommerce.action.user.ChangePasswordAction">
+    	    <interceptor-ref name="authAwareStack"/>
+    	    <result name="success" type="redirectAction">
+				<param name="actionName">login</param>
+			    <param name="namespace">/user</param>	
+    	    </result>
+    		<result name="input" type="tiles">changePasswordLayout</result>
+    	</action>
     	
     	<action name="loadEdit" class="com.ecommerce.action.user.LoadEdit">
     		<result name="success" type="tiles">editUserLayout</result>

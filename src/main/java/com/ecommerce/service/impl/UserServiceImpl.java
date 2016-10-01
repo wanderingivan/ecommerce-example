@@ -170,6 +170,18 @@ public class UserServiceImpl implements UserService {
 		return XLSXUtil.getWorkBook(orders);
 	}
 	
+	public void changePassword(String user, String oldPassword,String newPassword){
+		if(!checkPassword(user,oldPassword)){
+			throw new IncorrectPasswordException();
+		}
+		dao.changePassword(user,encoder.encode(newPassword));
+	}
+	
+	
+	private boolean checkPassword(String principal,String password){
+		return encoder.matches(password, dao.getPassword(principal));
+	}
+	
 	/** 
 	 * Create an Access Control List that allows the user to edit his profile and check their cart and orders 
 	 * <p>Profile deletion is handled only by ROLE_ADMIN</p>

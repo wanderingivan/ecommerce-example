@@ -70,5 +70,15 @@ public interface UserService {
 	Workbook getOrderAsXLSX(long orderId, User user);
 
 	@PreAuthorize("hasRole('ROLE_ADMIN') OR hasPermission(#user, 'WRITE')")
-	Workbook getOrdersAsXLSX(User user); 
+	Workbook getOrdersAsXLSX(User user);
+
+	/**
+	 * Changes a user's password
+	 * @param user
+	 * @param oldPassword
+	 * @param newPassword
+	 * @throws IncorrectPasswordException if the old password doesn't match
+	 */
+	@PreAuthorize("isAuthenticated()")
+	void changePassword(String user, String oldPassword, String newPassword); 
 }
