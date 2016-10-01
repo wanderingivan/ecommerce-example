@@ -81,7 +81,8 @@
 	            </li>
 	          </sec:authorize>
 	          <sec:accesscontrollist hasPermission="WRITE" domainObject="${user}">
-		        <li><s:a href="%{edit}" class="btn-add-cart"><s:text name="global.edit_your_profile"/></s:a></li>
+		        <li><s:a href="%{edit}" cssClass="btn-add-cart"><s:text name="global.edit_your_profile"/></s:a></li>
+		        <li><s:a action="changePasswordPage" namespace="/user" cssClass="btn-alt"><s:text name="global.change_your_password"/></s:a>
 	          </sec:accesscontrollist>
 	          <sec:authorize access="hasRole('ROLE_ADMIN')">
 		        <li><s:a href="%{edit}" class="btn-add-cart"><s:text name="global.edit_user"/></s:a></li>
