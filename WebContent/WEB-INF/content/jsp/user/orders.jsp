@@ -10,8 +10,8 @@
   </s:url>
   <div class="media">
    <div class="media-body text-left">
-	<h3 class="media-heading">&nbsp;<s:text name="global.order_id"/>:&nbsp;</h3>
-	<p class="text-muted"><s:text name="global.order_sold"/>&nbsp;<s:date name="sold"/></p> 
+	<h3 class="media-heading">&nbsp;<s:text name="global.order_id"/>:&nbsp;${id}</h3>
+	<p class="text-muted"><s:text name="global.order_sold"/>&nbsp;<s:date name="sold" format="dd/MMMM/yy"/></p> 
 	<p><s:text name="global.order_address"/>&nbsp;<s:property value="address"/><p>
 	<p>
 		<s:if test="sent">
@@ -38,7 +38,7 @@
 	         <s:text name="global.unit_price"/>:&nbsp;                  			 
 	         <span class="price">
                <s:text name="global.money">
-                 <s:param name="value" value="%{product.price}"/>				  
+                 <s:param name="value" value="%{price}"/>				  
 			   </s:text>
              </span>
            </p>
@@ -47,7 +47,11 @@
        </div>	
 	</s:iterator>
 	<h3 class="text-center">
-	  <s:text name="global.order_total"/>:&nbsp;<s:property value="total"/><s:property value="id"/><br/>
+	  <s:text name="global.order_total"/>:&nbsp;
+               <s:text name="global.money">
+                 <s:param name="value" value="%{total}"/>				  
+			   </s:text>
+			<br/>
 	  <s:a href="%{getOrderXLS}"><s:text name="global.get_xls"/></s:a>
 	</h3>
    </div>
