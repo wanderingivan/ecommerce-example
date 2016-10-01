@@ -2,7 +2,6 @@ package com.ecommerce.util;
 
 
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.core.io.ClassPathResource;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -136,7 +135,7 @@ public class ImageUtil {
 		ByteArrayOutputStream baos = null;
 		try {
 			baos = new ByteArrayOutputStream();
-			BufferedImage originalImage = ImageIO.read(new ClassPathResource(defaultDestPath.concat(path)).getFile());
+			BufferedImage originalImage = ImageIO.read(new File(defaultDestPath,path));
 			// convert BufferedImage to byte array
 			ImageIO.write(originalImage, "jpg", baos);			
 			baos.flush();
