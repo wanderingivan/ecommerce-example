@@ -144,7 +144,7 @@ CREATE TABLE `tasks` (
 	assigner VARCHAR(50) NOT NULL,
     assignee VARCHAR(50) NOT NULL,
 	created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	completed TIMESTAMP,
+	completed TIMESTAMP NULL DEFAULT NULL,
 	complete TINYINT NOT NULL DEFAULT 0,
 	CONSTRAINT assigner_fk FOREIGN KEY(assigner) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT assignee_fk FOREIGN KEY(assignee) REFERENCES users(username) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -276,7 +276,7 @@ BEGIN
 DECLARE chatId BIGINT;
 SELECT chat_id FROM chats_join_table 
               WHERE user_id IN (SELECT user_id FROM users where username = sender or username = receiver) 
-           GROUP BY chat_id HAVING count(*) > 1 INTO chatId;
+              GROUP BY chat_id HAVING count(*) > 1 INTO chatId;
 
 IF chatId IS NULL THEN
     INSERT INTO chats(lastUpdate) VALUES(NOW());
