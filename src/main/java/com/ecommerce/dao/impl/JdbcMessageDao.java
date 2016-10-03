@@ -186,7 +186,7 @@ public class JdbcMessageDao implements MessageDao {
 	@Override
 	public List<Chat> loadUserChats(long user_id) {
 		StringBuilder query = new StringBuilder(selectChatQuery);
-		query.append("WHERE c.chat_id IN (SELECT chat_id FROM chats_join_table WHERE user_id =?) AND u.user_id != ? GROUP BY c.chat_id ORDER BY c.lastUpdate DESC LIMIT 5");
+		query.append("WHERE c.chat_id IN (SELECT chat_id FROM chats_join_table WHERE user_id =?) AND m.message_id IN (SELECT MAX(message_id) FROM chat_messages WHERE sender_id != ? GROUP BY chat_id) ORDER BY c.lastUpdate DESC LIMIT 5");
 		return template.query(query.toString(),new Object[]{user_id,user_id},chatResultSetExractor);
 	}
 
