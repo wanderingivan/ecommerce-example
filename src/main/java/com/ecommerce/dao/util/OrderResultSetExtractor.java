@@ -3,6 +3,7 @@ package com.ecommerce.dao.util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -24,13 +25,15 @@ public class OrderResultSetExtractor implements ResultSetExtractor<List<Order>> 
 	public List<Order> extractData(ResultSet rs) throws SQLException,
 			DataAccessException {
 		Map<Long,Product> products = new HashMap<>();
-		List<Order> orders = new LinkedList<>();
-		Order o = null;
+		Map<Long,Order> orders = new LinkedHashMap<>();
+		
+
 		while(rs.next()){
-			if(o == null || o.getId() != rs.getLong("order_id")){
+			Order o = orders.get(rs.getLong("order_id"));
+			if(o == null){
 				o = orderMapper.mapRow(rs,rs.getRow());
 				products.clear();
-				orders.add(o);
+				orders.put(o.getId(),o);
 			}
 			Product p  = products.get(rs.getLong("id"));
 			if(p == null ){
@@ -44,7 +47,7 @@ public class OrderResultSetExtractor implements ResultSetExtractor<List<Order>> 
 
 					
 		}
-		return orders;
+		return new LinkedList<>(orders.values());
 	}
 
 }
