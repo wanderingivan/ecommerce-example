@@ -51,7 +51,7 @@ public class UserActionValidationTests extends AbstractActionValidationTestCase{
 	public void testValidationWithStringLengthErrors() throws Exception{
 
 		
-		ActionProxy actionProxy = getProxy("/user/editUser",new String [] {"someone","address","pas","email@email.com"});
+		ActionProxy actionProxy = getProxy("/user/editUser",new String [] {"som","address","pas","email@email.com"});
 		CreateEditAction action =  (CreateEditAction) actionProxy.getAction();	
 		
 		

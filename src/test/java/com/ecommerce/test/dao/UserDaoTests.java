@@ -111,6 +111,7 @@ public class UserDaoTests extends AbstractDBTest {
 	public void testGetOrders(){
 		List<Order> orders = dao.getOrders(1);
 		assertNotNull(orders);
+		System.out.println(orders);
 		assertEquals(2,orders.size());
 		assertEquals(2,orders.get(0).getItems().size());
 		assertEquals(1,orders.get(1).getItems().size());
