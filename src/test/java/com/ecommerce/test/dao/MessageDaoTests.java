@@ -81,22 +81,14 @@ public class MessageDaoTests extends AbstractDBTest {
 		assertEquals(0, tasks.size());
 	}
 	
-	@Test
-	@Transactional
-	public void testSendMessage(){
-		dao.sendMessage("message4", "username3", "username2");
-		List<Chat> chats = dao.loadUserChats(2);
-		assertNotNull(chats);
-		assertEquals(2,chats.size());
-		assertEquals(1,chats.get(0).getMessages().size());
-	}
+
 	
 	@Test
 	@Transactional
 	public void testCountUnread(){
 		dao.addMessage("username1", 5, "message");
 		int unread = dao.countUnread(2);
-		assertEquals(2, unread);
+		assertEquals(7, unread);
 	}
 	
 	@Test
@@ -105,7 +97,7 @@ public class MessageDaoTests extends AbstractDBTest {
 		dao.addMessage("username1", 5, "message");
 		List<Message> unread =dao.getUnread(2);
 		assertNotNull(unread);
-		assertEquals(2, unread.size());
+		assertEquals(7, unread.size());
 		int count =dao.countUnread(2);
 		assertEquals(0,count);
 	}
@@ -114,16 +106,18 @@ public class MessageDaoTests extends AbstractDBTest {
 	@Transactional
 	public void testRetrieveConversation(){
 		List<Chat> chats = dao.loadUserChats(2);
-		assertEquals("Incorrect number of conversations retrieved",1,chats.size());
-		Chat test = dao.loadChat(chats.get(0).getId());
-		assertEquals("Incorrect number of messages retrieved",2,test.getMessages().size());
+		assertEquals("Incorrect number of conversations retrieved",2,chats.size());
+		Chat test = chats.get(0);
+		assertEquals("username3",test.getMessages().get(0).getSender().getUsername());
+		test = chats.get(1);
+		assertEquals("username1",test.getMessages().get(0).getSender().getUsername());
 	}
 	
 	@Test
 	@Transactional
 	public void testRetrieveChat(){
 		Chat c = dao.loadChat(5);
-		assertEquals(2, c.getMessages().size());
+		assertEquals(7, c.getMessages().size());
 	}
 	
 	@Test
@@ -132,9 +126,9 @@ public class MessageDaoTests extends AbstractDBTest {
 		dao.sendMessage("test message","username1","username2");
 		List<Chat> chats = dao.loadUserChats(2);
 		assertNotNull(chats);
-		assertEquals(1,chats.size());
+		assertEquals(2,chats.size());
 		Chat c = dao.loadChat(chats.get(0).getId());
-		assertEquals(3,c.getMessages().size());
+		assertEquals(8,c.getMessages().size());
 		assertEquals("test message",c.getMessages().get(0).getMessage());
 	}
 
@@ -143,7 +137,18 @@ public class MessageDaoTests extends AbstractDBTest {
 	public void testAddMessage(){
 	    dao.addMessage("username1",5,"test message");
 		Chat c = dao.loadChat(5);
-		assertEquals(3, c.getMessages().size());
+		assertEquals(8, c.getMessages().size());
+		assertEquals("test message",c.getMessages().get(0).getMessage());
+	}
+	
+	@Test
+	@Transactional
+	public void testSendMessageNewChat(){
+		dao.sendMessage("test message","username4","username2");
+		List<Chat> chats = dao.loadUserChats(2);
+		assertEquals(3,chats.size());
+		Chat c = dao.loadChat(chats.get(0).getId());
+		assertEquals(1,c.getMessages().size());
 		assertEquals("test message",c.getMessages().get(0).getMessage());
 	}
 	
