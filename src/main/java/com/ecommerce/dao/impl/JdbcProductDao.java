@@ -129,6 +129,7 @@ public class JdbcProductDao implements ProductDao{
 		this.toggleFeaturedCall = new SimpleJdbcCall(template).withProcedureName("setFeatured")
 		                                                      .declareParameters(new SqlParameter("product_name",Types.VARCHAR),
 		                        		  		                                 new SqlParameter("isFeatured",Types.TINYINT));
+		insertStatementCreator.setReturnGeneratedKeys(true);
 	}
 
 	@Override

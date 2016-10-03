@@ -226,7 +226,7 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 												                                 new int [] {Types.VARCHAR,Types.VARCHAR,
 														                                     Types.VARCHAR,Types.VARCHAR,
 														                                     Types.VARCHAR,Types.VARCHAR,});
-		
+		psF.setReturnGeneratedKeys(true);
 		try{
 			template.update(psF.newPreparedStatementCreator(new Object[]{user.getUsername(),user.getPassword(),user.getDetails(),user.getImagePath(),
 																		 user.getAddress(),user.getEmail()})
