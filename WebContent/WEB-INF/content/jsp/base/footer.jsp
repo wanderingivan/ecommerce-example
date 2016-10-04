@@ -11,8 +11,7 @@
     	  <div class="col-sm-6 col-md-4 col-md-offset-1">
     	    <h3>Information</h3>
     	    <ul>
-    	      <li><a href="#">About Me</a></li>
-     	      <li><a href="#">Credits</a></li>   	      
+    	      <li><a href="http://github.com/wanderingivan">About Me</a></li>
     	    </ul>
     	  </div>
     	  <div class="col-sm-6 col-md-4">
@@ -30,17 +29,14 @@
     	    </ul>
     	  </div>
     	  <div class="col-sm-6 col-md-3">
-    	    <h3>Sites</h3>
+    	    <h3>Made possible by:</h3>
     	    <ul>
-    	      <li><a href="#">News Site</a></li>
-    	      <li><a href="#">SocialNetwork Site</a></li>
-    	      <li><a href="#">Ecommerce Site</a></li>    	    
+			  <li><a href="http://struts.apache.org/">Struts 2</a></li>
+			  <li><a href="https://spring.io/">Spring</a></li>
+			  <li><a href="https://tiles.apache.org/">Tiles</a></li>
     	    </ul>
     	  </div>
         </div>
       </div>
     </div>  
   </div> 
-  <div class="copyright">
-   <p>2015 EcommerceExample Created By <a href="#">Shad</a></p>
-  </div>
