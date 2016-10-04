@@ -32,7 +32,9 @@
     	    <result name="product" type="tiles">listProductLayout</result>
     	    <result name="user" type="tiles">listUserLayout</result>
      	</action>
-     	
+     	<action name="photoCredits">
+     	    <result name="success" type="tiles">creditsLayout</result>
+     	</action>	
     </package>
     
     <package name="product" extends="default,json-default" namespace="/product">

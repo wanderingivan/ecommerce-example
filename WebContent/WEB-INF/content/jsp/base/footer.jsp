@@ -12,6 +12,7 @@
     	    <h3>Information</h3>
     	    <ul>
     	      <li><a href="http://github.com/wanderingivan">About Me</a></li>
+    	      <li><s:a action="photoCredits" namespace="/">Photo Credits</s:a></li>   	
     	    </ul>
     	  </div>
     	  <div class="col-sm-6 col-md-4">

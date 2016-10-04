@@ -107,4 +107,8 @@
 		<put-attribute name="main" value="/WEB-INF/content/jsp/base/404.jsp"/>
 	</definition>
 
+	<definition name="creditsLayout" extends="basePageLayout">
+		<put-attribute name="main" value="/WEB-INF/content/jsp/base/photoCredits.jsp"/>
+	</definition>
+
 </tiles-definitions>
