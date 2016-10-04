@@ -6,6 +6,9 @@
  <div class="row">
   <div class="col-md-2 hidden-sm"></div>
 	<div class="col-md-8">
+	  <div class="alert alert-info">
+	  	Premade accounts are user 1 and user2 with password <i>password</i>
+	  </div>
       <div class="errorMessage">
         <s:if test="%{#session.SPRING_SECURITY_LAST_EXCEPTION}">
           <div class="alert alert-warning"><s:text name="global.login_error"/></div>

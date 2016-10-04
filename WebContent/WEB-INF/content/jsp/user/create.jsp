@@ -10,6 +10,9 @@
 		<div class="box">
 		  <h3 class="text-center"><s:text name="global.create_user"/></h3>
 		</div>
+	    <div class="alert alert-info">
+	  	  Premade accounts are user 1 and user2 with password <i>password</i>
+	    </div>
 		<div class="forms">
 		  <s:form action="createUser" theme="simple" namespace="/user" enctype="multipart/form-data">
 		   	<div class="form-group">
