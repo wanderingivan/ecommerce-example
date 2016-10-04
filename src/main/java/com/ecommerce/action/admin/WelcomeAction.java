@@ -97,7 +97,6 @@ public class WelcomeAction extends ActionSupport implements AuthenticatedUserAwa
 
 	@Override
 	public void setUserDetails(UserDetails userDetails) {
-		//System.out.println("Setting user details " + userDetails);
 		this.user = userDetails;
 	}
 	

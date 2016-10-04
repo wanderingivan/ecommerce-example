@@ -35,8 +35,7 @@ public class WelcomeAction extends ActionSupport{
 			featured = service.getFeatured();
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error("Error caught when executing welcome action ");
-			logger.error(e);
+			logger.error("Error caught when executing welcome action: \n" +e);
 		}
 		return ERROR;
 	}

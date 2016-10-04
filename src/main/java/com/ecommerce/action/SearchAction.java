@@ -50,8 +50,7 @@ public class SearchAction extends ActionSupport{
 				throw new IllegalArgumentException("Unmapped query type: "+type);
 			}
 		}catch(Exception e){
-			logger.error(String.format("Exception caught searching for query %s with type %s",query,type));
-			logger.error(e);
+			logger.error(String.format("Exception caught searching for query %s with type %s :\n%s",query,type,e));
 		}
 		return ERROR;
 	}

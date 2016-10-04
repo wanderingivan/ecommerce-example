@@ -166,7 +166,6 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public Workbook getOrdersAsXLSX(User user) {
 		List<Order> orders = getOrders(user); 
-		System.out.println(orders);
 		return XLSXUtil.getWorkBook(orders);
 	}
 	
