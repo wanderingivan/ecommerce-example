@@ -6,14 +6,11 @@
  
  **How to run**:
   1. Download repository
-  2. Run /src/scripts/sql/createDatabase.sql on a MySql database of your choice
-   * (Optional) Run /src/scripts/sql/createPresetDatabase.sql -adds pre made products,users and reviews
-  3. Update src/main/resources/application.properties to include db url and user 
-  4. Update application.properties to include default image folder
-   * (Optional) use image folder included at /src/images - application.properties expects absolute path
-  5. Execute mvn tomcat7:run
-  6. Load localhost:8080/Ecommerce on your favorite browser
+  2. Update application.properties with database user and password
+  3. Update pom.xml with database user and password  
+  4. Execute mvn tomcat7:run
+  5. Load localhost:8080/Ecommerce on your favorite browser
   
- For integration tests an empty database must be created with createDatabase.sql.
  Test datasource configuration will be in /src/test/resources/testDbUnitContext.xml   
+ If you don't want to use preset products and users add -Dbuild.preset.skip=true argument
   
