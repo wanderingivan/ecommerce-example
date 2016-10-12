@@ -26,6 +26,7 @@ import javax.imageio.stream.ImageOutputStream;
 public class ImageUtil {
 
 	
+    private static final String DEFAULT_IMAGE_FOLDER = "/src/images";
 	private final String defaultDestPath;
 	private final long  maxUncompressedSize;
 	private final boolean convertToJpg;
@@ -39,7 +40,11 @@ public class ImageUtil {
 
 	public ImageUtil(String defaultDestPath,String convertToJpg,String maxUncompressedSize) {
 		super();
-		this.defaultDestPath = defaultDestPath;
+		if(defaultDestPath.isEmpty()){
+	        this.defaultDestPath = System.getProperty("user.dir").concat(DEFAULT_IMAGE_FOLDER);
+		}else{
+		    this.defaultDestPath = defaultDestPath;
+		}
 		this.convertToJpg =  Boolean.valueOf(convertToJpg);
 		this.maxUncompressedSize =  Long.valueOf(maxUncompressedSize);
 	}
