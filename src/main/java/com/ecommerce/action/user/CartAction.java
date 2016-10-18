@@ -39,7 +39,9 @@ public class CartAction extends AbstractUserAction implements AuthenticatedUserA
 	
 	public String loadCart(){
 		try{
-			logger.info("Getting cart for user "+user.getUsername());
+	        if(logger.isInfoEnabled()){
+	            logger.info("Getting cart for user "+user.getUsername());
+	        }
 			Cart cart = service.getCart(((User) user));
 			if(cart==null){
 				return SUCCESS;
@@ -59,7 +61,9 @@ public class CartAction extends AbstractUserAction implements AuthenticatedUserA
 
 	public String addItem(){
 		try{
-			logger.info(String.format("Adding item  %d for user %s",product_id,user.getUsername()));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("Adding item  %d for user %s",product_id,user.getUsername()));
+	        }
 			service.addCartItem((User) user, product_id);
 			return SUCCESS;
 		}catch(Exception e){
@@ -71,12 +75,13 @@ public class CartAction extends AbstractUserAction implements AuthenticatedUserA
 
 	public String removeItem(){
 		try{
-			logger.info(String.format("Removing item  %d for user %s",product_id,user.getUsername()));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("Removing item  %d for user %s",product_id,user.getUsername()));
+	        }
 			service.removeCartItem((User) user, product_id);
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Caught exception when removing item with id "+product_id + "\n" + e);
-			logger.error(e);
 		}
 		return ERROR;	
 	

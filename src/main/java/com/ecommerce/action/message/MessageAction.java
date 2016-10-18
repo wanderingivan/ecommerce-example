@@ -27,7 +27,9 @@ public class MessageAction extends AbstractMessageAction implements Authenticate
 	
 	public String sendMessage(){
 		try{
-			logger.debug(String.format("Sending message %s to %s from %s ",message,receiver,user.getUsername()));
+	        if(logger.isDebugEnabled()){
+	            logger.debug(String.format("Sending message %s to %s from %s ",message,receiver,user.getUsername()));
+	        }
 			service.sendMessage(message, user.getUsername(), receiver);
 			return SUCCESS;
 		}catch(Exception e){
@@ -38,7 +40,9 @@ public class MessageAction extends AbstractMessageAction implements Authenticate
 
 	public String addMessage(){
 		try{
-			logger.debug(String.format("Adding message %s to chat %d from %s", message,chatId,user.getUsername()));
+	        if(logger.isDebugEnabled()){
+	            logger.debug(String.format("Adding message %s to chat %d from %s", message,chatId,user.getUsername()));
+	        }
 			service.addMessage(user.getUsername(), chatId, message);
 			return SUCCESS;
 		}catch(Exception e){

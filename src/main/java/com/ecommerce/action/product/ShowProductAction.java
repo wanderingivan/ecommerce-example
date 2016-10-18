@@ -28,8 +28,8 @@ public class ShowProductAction extends AbstractProductAction {
 	
 	public String show(){
 		try{
-			if(logger.isDebugEnabled()){
-				logger.debug("Loading product "+productName);
+			if(logger.isTraceEnabled()){
+				logger.trace("Loading product "+productName);
 			}
 			product = service.getProduct(productName);
 			if(product == null){

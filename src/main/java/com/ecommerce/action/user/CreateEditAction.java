@@ -43,7 +43,9 @@ public class CreateEditAction extends AbstractUserAction implements ModelDriven<
 			if(!validatePassword(user.getPassword())){
 				return INPUT;
 			}
-			logger.info(String.format("Creating user %s",user));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("Creating user %s",user));
+	        }
 			
 			if(profilePic != null){
 				String imagePath = imageService.saveImage(profilePic, profilePicContentType, profilePicFileName);

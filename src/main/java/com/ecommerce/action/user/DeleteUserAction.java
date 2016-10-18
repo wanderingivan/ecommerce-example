@@ -12,14 +12,16 @@ public class DeleteUserAction extends AbstractUserAction implements Authenticate
 	 */
 	private static final long serialVersionUID = -3970178174439812336L;
 
-	private static Logger logger =  Logger.getLogger(DeleteUserAction.class);
+	private static final Logger logger =  Logger.getLogger(DeleteUserAction.class);
 
 	private long user_id;
 
 	private UserDetails userDetails;
 	public String execute(){
 		try {
-			logger.info(String.format("User %s deleting user with id %d",userDetails.getUsername(),user_id));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s deleting user with id %d",userDetails.getUsername(),user_id));
+	        }
 			service.delete(user_id);
 			return SUCCESS;
 		}catch(Exception e){

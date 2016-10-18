@@ -17,7 +17,7 @@ public class LoadEdit extends AbstractUserAction {
 	private static final long serialVersionUID = -7144377163954311095L;
 	private User user;
 	private String username;
-	private static Logger logger = Logger.getLogger(LoadEdit.class);
+	private static final Logger logger = Logger.getLogger(LoadEdit.class);
 	
 	public String execute(){
 		try{

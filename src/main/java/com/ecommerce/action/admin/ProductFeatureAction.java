@@ -26,7 +26,9 @@ public class ProductFeatureAction extends ActionSupport implements Authenticated
 	
 	public String addToFeatured(){
 		try{
-			logger.info(String.format("Adding product %s to featured by user %s",productName,user.getUsername()));
+		    if(logger.isInfoEnabled()){
+		        logger.info(String.format("Adding product %s to featured by user %s",productName,user.getUsername()));
+		    }
 			service.addFeatured(productName);
 			return SUCCESS;
 		}catch(Exception e){
@@ -48,7 +50,9 @@ public class ProductFeatureAction extends ActionSupport implements Authenticated
 	
 	public String putOnSale(){
 		try{
-			logger.info(String.format("Putting product %s on sale by user %s",productName,user.getUsername()));
+		    if(logger.isInfoEnabled()){
+		        logger.info(String.format("Putting product %s on sale by user %s",productName,user.getUsername()));
+		    }
 			service.putOnSale(productName);
 			return SUCCESS;
 		}catch(Exception e){
@@ -59,7 +63,9 @@ public class ProductFeatureAction extends ActionSupport implements Authenticated
 	
 	public String takeOffSale(){
 		try{
-			logger.info(String.format("Putting product %s off sale by user %s",productName,user.getUsername()));
+            if(logger.isInfoEnabled()){
+                logger.info(String.format("Putting product %s off sale by user %s",productName,user.getUsername()));
+            }		    
 			service.removeSale(productName);
 			return SUCCESS;
 		}catch(Exception e){

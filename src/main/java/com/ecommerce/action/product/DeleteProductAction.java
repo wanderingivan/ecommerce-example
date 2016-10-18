@@ -20,7 +20,9 @@ public class DeleteProductAction extends AbstractProductAction implements ModelD
 	
 	public String execute(){
 		try {
-			logger.info(String.format("Deleting product with id %d name %s by %s", product.getId(),product.getProductName(),user.getUsername()));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s deleting product with id %d name",user.getUsername(),product.getId(),product.getProductName()));
+	        }
 			service.delete(product);
 			return SUCCESS;
 		}catch(Exception e){

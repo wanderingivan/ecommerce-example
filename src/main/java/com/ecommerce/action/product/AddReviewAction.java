@@ -22,8 +22,10 @@ public class AddReviewAction extends AbstractProductAction implements Authentica
 	
 	
 	public String execute(){
-		logger.info(String.format("Creating review with message %s and rating %d for product %s by user %s",
-									message,rating,productName,user.getUsername()));
+        if(logger.isInfoEnabled()){
+            logger.info(String.format("Creating review with message %s and rating %d for product %s by user %s",
+                                                                                    message,rating,productName,user.getUsername()));
+        }
 		try{
 			service.addReview((User) user,message,rating,productName);
 			return SUCCESS;

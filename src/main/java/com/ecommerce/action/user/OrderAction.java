@@ -29,8 +29,10 @@ public class OrderAction extends AbstractUserAction implements AuthenticatedUser
 
 	public String execute(){
 		try{
-			logger.info(String.format("Creating order for user %s with address %s "
-					,user.getUsername(),address));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("Creating order for user %s with address %s "
+	                    ,user.getUsername(),address));
+	        }
 			service.addOrder((User) user);
 			return SUCCESS;
 		}catch(Exception e){

@@ -21,7 +21,9 @@ public class LoadReviewsAction extends AbstractProductAction {
 
 	public String execute(){
 		try{
-			logger.debug("Loading reviews for pId " + product_id);
+		    if(logger.isTraceEnabled()){
+		        logger.trace("Loading reviews for pId " + product_id);
+		    }
 			reviews = service.getReviews(product_id);
 			if(logger.isDebugEnabled()){
 				logger.debug("Result" + reviews);

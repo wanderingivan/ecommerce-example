@@ -35,11 +35,13 @@ public class CreateEditAction extends AbstractProductAction implements ModelDriv
 	
 	public String createProduct(){
 		try{
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s creating product %s",user.getUsername(),product));
+	        }
 			if(productPic != null){
 				String imagePath = imageService.saveImage(productPic, productPicContentType, productPicFileName);
 				product.setImagePath(imagePath);
 			}
-			logger.info(String.format("Creating Product %s by user %s",product,user.getUsername()));
 			service.createProduct(product,(User) user);
 			return SUCCESS;
 		}catch(DuplicateProductNameException de){
@@ -53,7 +55,9 @@ public class CreateEditAction extends AbstractProductAction implements ModelDriv
 	
 	public String editProduct(){
 		try{
-			logger.info(String.format("Editing Product %d by user %s",product.getId(),user.getUsername()));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s editing product %d",user.getUsername(),product.getId()));
+	        }
 			if(productPic != null){
 				String imagePath = imageService.saveImage(productPic, productPicContentType, productPicFileName);
 				product.setImagePath(imagePath);

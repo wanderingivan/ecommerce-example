@@ -28,7 +28,9 @@ public class CheckoutAction extends AbstractUserAction  implements Authenticated
 	public String execute(){
 	
 		try{
-			logger.info("Preparing checkout for user " + userDetails.getUsername());
+	        if(logger.isInfoEnabled()){
+	            logger.info("Preparing checkout for user " + userDetails.getUsername());
+	        }
 			cart = service.getCart((User)userDetails);
 			user = service.getUser(userDetails.getUsername());
 			return SUCCESS;

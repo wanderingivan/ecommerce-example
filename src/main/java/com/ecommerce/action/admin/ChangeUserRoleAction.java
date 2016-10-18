@@ -17,8 +17,10 @@ public class ChangeUserRoleAction extends AbstractUserAdminAction{
 	
 	public String execute(){
 		try{
-			logger.info(String.format("Changing user %s role to %s by %s",username,role
+		    if(logger.isInfoEnabled()){
+		        logger.info(String.format("Changing user %s role to %s by %s",username,role
 					                                                         ,actingUser.getUsername()));
+		    }
 			service.changeRole(username, role);
 			return SUCCESS;
 		}catch(Exception e){

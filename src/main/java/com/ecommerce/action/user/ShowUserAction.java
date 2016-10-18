@@ -9,7 +9,8 @@ import com.ecommerce.model.User;
 
 /**
  * 
- * Loads an user from service by username 
+ * Loads an user from service by username
+ * if called without parameters loads the authenticated user 
  *
  */
 public class ShowUserAction extends AbstractUserAction implements AuthenticatedUserAware{

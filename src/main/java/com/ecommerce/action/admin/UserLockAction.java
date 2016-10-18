@@ -14,7 +14,9 @@ public class UserLockAction extends AbstractUserAdminAction {
 	
 	public String enable(){
 		try{
+            if(logger.isInfoEnabled()){
 			logger.info(String.format("User %s enabling user %s",actingUser.getUsername(),username));
+            }
 			service.enableUser(username);
 			return SUCCESS;
 		}catch(Exception e){
@@ -25,7 +27,9 @@ public class UserLockAction extends AbstractUserAdminAction {
 	
 	public String disable(){
 		try{
-			logger.info(String.format("User %s disabling user %s",actingUser.getUsername(),username));
+            if(logger.isInfoEnabled()){
+                logger.info(String.format("User %s disabling user %s",actingUser.getUsername(),username));
+            }		   
 			service.disableUser(username);
 			return SUCCESS;
 		}catch(Exception e){
