@@ -21,19 +21,12 @@ public class ShowCategoryAction extends AbstractProductAction {
 
 	public String execute(){
 		try{
-			if(logger.isDebugEnabled()){
-				logger.debug("Loading category "+category);
+			if(logger.isTraceEnabled()){
+				logger.trace("Loading category "+category);
 			}
-			switch (category) {
-			case "mostSeen":
-				products = service.getMostSeen();
-				break;
-			case "mostSold":
-				products = service.getMostSold();
-				break;
-			default:
-				products = service.getCategory(category);
-				break;
+			products = service.getCategory(category);
+			if(logger.isDebugEnabled()){
+				logger.debug("Loaded products "+products);
 			}
 			return SUCCESS;
 		}catch(Exception e){

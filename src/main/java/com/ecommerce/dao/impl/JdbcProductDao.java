@@ -181,6 +181,11 @@ public class JdbcProductDao implements ProductDao{
 
 	@Override
 	public List<Product> getCategory(String category) {
+	    if(category.equals("mostSeen")){
+	        return getMostSeen();
+	    }else if(category.equals("mostSold")){
+	        return getMostSold();
+	    }
 		return listProducts("WHERE category = ? LIMIT 8",new Object[]{category});
 	}
 

@@ -35,12 +35,8 @@ public interface ProductService {
 
 	List<Product> getLatest();
 
-	List<Product> getMostSeen();
-	
 	List<Product> getCategory(String category);
 	
-	List<Product> getMostSold();
-
 	List<Review> getReviews(long id);
 
 	@PreAuthorize("hasRole('ROLE_USER')")

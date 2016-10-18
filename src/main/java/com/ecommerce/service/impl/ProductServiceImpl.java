@@ -57,24 +57,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	@Cacheable(value="product_short", key="#root.methodName")
 	@Transactional
+	@Cacheable(value="product_short", key="#root.methodName")
 	public List<Product> getLatest() {
 		return dao.getLatest();
-	}
-
-	@Override
-	@Transactional
-	@Cacheable(value="product_short", key="#root.methodName")
-	public List<Product> getMostSeen() {
-		return dao.getMostSeen();
-	}
-
-	@Override
-	@Transactional
-	@Cacheable(value="product_short", key="#root.methodName")
-	public List<Product> getMostSold() {
-		return dao.getMostSold();
 	}
 
 	@Override
@@ -92,9 +78,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional
 	@Caching(evict={@CacheEvict(value="product", key="#product.productName"),
 				    @CacheEvict(value="product_short", allEntries=true)})
-	@Transactional
 	public void delete(Product product) {
 		dao.deleteProduct(product.getId());
 		deleteAcl(product.getId());
@@ -107,8 +93,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	@Caching(evict={@CacheEvict(value="product", key="#product.productName")})
 	@Transactional
+	@Caching(evict={@CacheEvict(value="product", key="#product.productName")})
 	public void editProduct(Product product) {
 		dao.editProduct(product);
 	}
@@ -179,7 +165,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	/** 
-	 * Create and Access Control List that allows the user to edit and delete his product 
+	 * Create an Access Control List that allows the user to edit and delete his product 
 	 * @param sid the security id
 	 * @param id - the id of the product to create the acl for
 	 */ 
