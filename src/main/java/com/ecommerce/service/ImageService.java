@@ -21,7 +21,7 @@ public interface ImageService {
 	 */
 	String getB64(String path) throws IOException;
 	
-	byte [] loadImage(String path) throws IOException;
+	File loadImage(String path) throws IOException;
 	
 	/**
 	 * Saves an image to a predefined destination

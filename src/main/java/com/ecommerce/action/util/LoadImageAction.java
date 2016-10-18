@@ -1,6 +1,7 @@
 package com.ecommerce.action.util;
 
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ public class LoadImageAction implements ServletRequestAware{
 		return "ImageResult";
 	}
 
-	public byte[] getImageInBytes() throws IOException{
+	public File getImage() throws IOException{
 		return service.loadImage(path);
 	}
 	

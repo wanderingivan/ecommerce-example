@@ -60,7 +60,7 @@ public class ImageServiceImpl implements ImageService {
 	 */
 	@Override
 	@Cacheable(value="image", key="#path")
-	public byte[] loadImage(String path) throws IOException{
+	public File loadImage(String path) throws IOException{
 		try{
 			return imageUtil.loadImage(path);
         }catch(IOException missingFile){
