@@ -26,7 +26,7 @@ public abstract class AbstractActionValidationTestCase extends StrutsSpringTestC
 	}
 	
 	private static final String  TEST_CONTEXT_LOCATION = 
-			                        "classpath*:basicTestContext.xml";
+			                        "classpath*:validationsTestContext.xml";
 	
     protected String[] getContextLocations() {
         return new String[] {TEST_CONTEXT_LOCATION};
