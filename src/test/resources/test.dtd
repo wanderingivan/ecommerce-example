@@ -25,6 +25,7 @@
     details CDATA #IMPLIED
     imagePath CDATA #IMPLIED
     locked CDATA #IMPLIED
+    createdOn CDATA #IMPLIED
 >
 
 <!ELEMENT products EMPTY>
@@ -92,7 +93,7 @@
 <!ATTLIST orders
 	order_id CDATA #IMPLIED
 	user_id CDATA #REQUIRED
-	sold CDATA #IMPLIED
+	sold CDATA #REQUIRED
 	sent CDATA #IMPLIED
 	address CDATA #IMPLIED
 >

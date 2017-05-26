@@ -36,8 +36,6 @@ public class UserDaoTests extends AbstractDBTest {
 		assertEquals("test description1",u.getDetails());
 		assertEquals("test address",u.getAddress());
 	}
-
-
 	
 	@Test
 	@Transactional
@@ -110,10 +108,11 @@ public class UserDaoTests extends AbstractDBTest {
 	@Transactional
 	public void testGetOrders(){
 		List<Order> orders = dao.getOrders(1);
+
 		assertNotNull(orders);
 		assertEquals(2,orders.size());
-		assertEquals(2,orders.get(0).getItems().size());
-		assertEquals(1,orders.get(1).getItems().size());
+		assertEquals(1,orders.get(0).getItems().size());
+		assertEquals(2,orders.get(1).getItems().size());
 	}
 	
 	@Test
