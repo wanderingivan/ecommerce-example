@@ -14,7 +14,11 @@
   	<struts2.version>2.3.24</struts2.version>  
     <spring.version>4.3.1.RELEASE</spring.version>
     <spring.security.version>4.1.1.RELEASE</spring.security.version>
-    
+   	<h2.version>1.4.194</h2.version>
+  	<mysql.version>5.1.39</mysql.version>
+  	<sql.maven.version>1.5</sql.maven.version>
+  	<sql.dir>src/main/resources/scripts/sql</sql.dir>   
+  	
   </properties> 
   
   <dependencies>
@@ -136,8 +140,14 @@
   	<dependency>
   		<groupId>mysql</groupId>
   		<artifactId>mysql-connector-java</artifactId>
-  		<version>5.1.39</version>
+  		<version>${mysql.version}</version>
   	</dependency>
+  	
+  	<dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2.version}</version>
+    </dependency>
   	
     <dependency>
         <groupId>commons-codec</groupId>
