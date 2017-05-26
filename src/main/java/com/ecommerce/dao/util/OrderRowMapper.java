@@ -15,7 +15,7 @@ public class OrderRowMapper implements RowMapper<Order> {
 		order.setId(rs.getLong("order_id"));
 		order.setAddress(rs.getString("address"));
 		order.setTotal(rs.getBigDecimal("total"));
-		order.setSold(rs.getDate("sold"));
+		order.setSold(rs.getDate("totalSold"));
 		order.setSent(rs.getBoolean("sent"));
 		return order;
 	}

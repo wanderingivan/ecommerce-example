@@ -14,7 +14,6 @@ import com.ecommerce.model.Cart;
 import com.ecommerce.model.Order;
 import com.ecommerce.model.User;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -42,7 +41,6 @@ import org.springframework.stereotype.Repository;
 @Repository("userDao")
 public class JdbcUserDao implements UserDao,UserDetailsService {
 
-	private static final Logger logger = Logger.getLogger(JdbcUserDao.class);
 	
 	private JdbcTemplate template;
 	
@@ -70,6 +68,7 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 											            + "u.email,"
 											            + "u.enabled,"
 											            + "u.imagePath,"
+											            + "u.createdOn,"
 											            + "p.product_id as id,"
 											            + "p.name as productName,"
 											            + "p.imagePath,"
@@ -96,9 +95,9 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 		                                                  + "p.price,"
 		                                                  + "p.imagePath,"
 		                                                  + "o.order_id,"
+		                                                  + "o.sold as totalSold, "
 		                                                  + "o.total,"
 		                                                  + "o.address,"
-		                                                  + "o.sold, "
 		                                                  + "o.sent "
 						                            + " FROM products p"
 					                                     + " INNER JOIN orders_products op"
@@ -114,10 +113,10 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 				                                          + "p.price,"
 				                                          + "p.imagePath,"
 				                                          + "o.order_id,"
+				                                          + "o.sold as totalSold,"
 				                                          + "o.total,"
 				                                          + "o.address,"
-				                                          + "o.sent,"
-				                                          + "o.sold "
+				                                          + "o.sent"
 				                                    + " FROM products p"
 				                                         + " INNER JOIN orders_products op"
 				                                         + " ON op.product_id = p.product_id"
@@ -152,7 +151,7 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 				                                          + "o.total,"
 				                                          + "o.address,"
 				                                          + "o.sent,"
-				                                          + "o.sold "
+				                                          + "o.sold as totalSold "
 				                                    + " FROM products p"
 				                                         + " INNER JOIN orders_products op"
 				                                         + " ON op.product_id = p.product_id"
@@ -236,7 +235,6 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 		}
 
 		long userId = idHolder.getKey().longValue();
-		logger.debug("Saved Id " + userId);
 		
 		createCart(userId);
 		insertRole(user.getUsername());
@@ -246,7 +244,6 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 
 	@Override
 	public User getUser(String username) {
-		logger.debug("Dao Loading user " + username + " from DB");
 		try{
 			return (User) template.query(selectUserQuery,
 					                      new Object[] {username},
@@ -327,7 +324,6 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 	@Override
 	public void changeRole(String username,String role){
 		role = resolveRole(role);
-		logger.debug("Changing authority for user " + username + " to " + role);
 		template.update("UPDATE authorities SET authority = ? WHERE username= ?",new Object[]{role,username});
 	}
 	

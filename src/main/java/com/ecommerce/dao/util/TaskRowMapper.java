@@ -11,7 +11,7 @@ public class TaskRowMapper implements RowMapper<Task> {
 
 	@Override
 	public Task mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Task t = new Task(rs.getString("t.name"),rs.getString("description"));
+		Task t = new Task(rs.getString("name"),rs.getString("description"));
 		t.setComment(rs.getString("comment"));
 		t.setComplete(rs.getBoolean("complete"));
 		t.setCreated(rs.getDate("created"));

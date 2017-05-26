@@ -47,16 +47,16 @@ public class JdbcMessageDao implements MessageDao {
 			                    
 			                    deleteTaskStatement = "DELETE FROM tasks WHERE task_id = ?",
 			                    
-							    selectTaskQuery = "SELECT t.task_id,"
-							    				       + "t.name,"
-				                                       + "t.description,"
-				                                       + "t.message as comment,"
-				                                       + "t.created,"
-				                                       + "t.complete,"
-				                                       + "t.completed,"
-				                                       + "t.assigner,"
-				                                       + "t.assignee "				         
-				                                  + "FROM tasks t ",
+							    selectTaskQuery = "SELECT task_id,"
+							    				       + "name,"
+				                                       + "description,"
+				                                       + "message as comment,"
+				                                       + "created,"
+				                                       + "complete,"
+				                                       + "completed,"
+				                                       + "assigner,"
+				                                       + "assignee "				         
+				                                  + "FROM tasks ",
 				                                  
 								countTasksQuery = "SELECT count(*) FROM tasks t WHERE t.assignee= ? AND t.complete =0",
 								
@@ -125,23 +125,22 @@ public class JdbcMessageDao implements MessageDao {
 	@Override
 	public List<Task> getTasks(boolean fetchAll) {
 		StringBuilder query = new StringBuilder(selectTaskQuery);
-		query.append("ORDER BY t.created DESC ");
+		query.append("ORDER BY created DESC ");
 		if(!fetchAll){
 			query.append("LIMIT 10 ");
 		}
-		logger.debug("Final Query " + query.toString());
 		return template.query(query.toString(), taskRowMapper);
 	}
 
 	@Override
 	public List<Task> getTasks(String username,boolean fetchAll){
 		StringBuilder query = new StringBuilder(selectTaskQuery);
-		query.append("WHERE t.assignee = ? ");
+		query.append("WHERE assignee = ? ");
 		
 		if(!fetchAll){
-			query.append("AND t.complete = 0 ORDER BY t.created DESC LIMIT 10 ");
+			query.append("AND complete = 0 ORDER BY created DESC LIMIT 10 ");
 		}else{
-			query.append("ORDER BY t.created DESC");
+			query.append("ORDER BY created DESC");
 		}
 		logger.debug("Final Query " + query.toString());
 		return template.query(query.toString(), new Object[]{username},taskRowMapper);

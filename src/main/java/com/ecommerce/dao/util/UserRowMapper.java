@@ -18,6 +18,7 @@ public class UserRowMapper implements RowMapper<User> {
 		user.setDetails(rs.getString("details"));
 		user.setEmail(rs.getString("email"));
 		user.setImagePath(rs.getString("imagePath"));
+		user.setCreatedOn(rs.getDate("createdOn"));
 		user.setEnabled(rs.getBoolean("enabled"));
 	
 		return user;
