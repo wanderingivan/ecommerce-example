@@ -12,7 +12,10 @@ public class ConstraintExceptionConverter {
 	
 	public static RuntimeException convertException(DuplicateKeyException de){
 		
-		String message = de.getCause().getMessage();
+		String message = de.getCause()
+		                   .getMessage()
+		                   .split(";")[0]
+		                   .toLowerCase();
 		if(message.contains("email")){
 			return new DuplicateEmailException(de);
 		}else if(message.contains("username")){
