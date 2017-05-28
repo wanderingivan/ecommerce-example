@@ -130,7 +130,6 @@ void sendMessage(Connection conn,String message, String sender, String receiver)
 		         .executeQuery();
 		rs.next();
 		chatId = rs.getLong("newCId");
-		System.out.println("ChatId: " + chatId);
 		PreparedStatement addUserToChatStmt = conn.prepareStatement("INSERT INTO chats_join_table(chat_id,user_id) VALUES(?,(SELECT user_id FROM users WHERE username =?))");
 		addUserToChatStmt.setLong(1,chatId);
 		addUserToChatStmt.setString(2,sender);
