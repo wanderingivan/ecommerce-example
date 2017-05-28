@@ -22,10 +22,12 @@ public class UserActionValidationTests extends AbstractActionValidationTestCase{
 	
 	@Test
 	public void testValidationWithNoErros() throws Exception{
-		ActionProxy actionProxy = getProxy("/user/editUser",new String []{"username","address","password","email@email.com"});
+		ActionProxy actionProxy = getProxy("/user/editUser",new String []{"username67","address","password","email@email67.com"});
 		CreateEditAction action =  (CreateEditAction) actionProxy.getAction();	
+		String result = actionProxy.execute();
+
 		assertEquals("The validation didn't pass when it should have",
-								ActionSupport.SUCCESS,actionProxy.execute());
+								ActionSupport.SUCCESS,result);
 		assertTrue("There were errors in the validation when passing correct parameters " + action.getFieldErrors(),
 								action.getFieldErrors().size() < 1);
 	}

@@ -21,11 +21,12 @@ public class ProductActionValidationTests extends AbstractActionValidationTestCa
 	
 	@Test
 	public void testValidationWithNoErros() throws Exception{
-		ActionProxy actionProxy = getProxy("/product/editProduct",new String []{"prname","13.7","desc","fighters"});
+		ActionProxy actionProxy = getProxy("/product/editProduct",new String []{"prname","13.7","description","fighters"});
 		CreateEditAction action =  (CreateEditAction) actionProxy.getAction();	
-		action.execute();
-		assertEquals("The validation didn't pass when it should have Errors were :",
-								ActionSupport.SUCCESS,actionProxy.execute());
+        String result = actionProxy.execute();
+        
+		assertEquals("The validation didn't pass when it should have :",
+								ActionSupport.SUCCESS,result);
 		assertTrue("There were errors in the validation when passing correct parameters " + action.getFieldErrors(),
 								action.getFieldErrors().size() < 1);
 	}
@@ -37,9 +38,10 @@ public class ProductActionValidationTests extends AbstractActionValidationTestCa
 		
 		ActionProxy actionProxy = getProxy("/product/editProduct",new String [] {"","14.56","","",""});
 		CreateEditAction action =  (CreateEditAction) actionProxy.getAction();	
-		
+        String result = actionProxy.execute();
+
 		assertEquals("The validation passed when it shouldn't have",
-								ActionSupport.INPUT,actionProxy.execute());
+								ActionSupport.INPUT,result);
 		assertTrue(String.format("There were less  than expected "
 				+ "errors in the validation when passing incorrect parameters"
 				+ "expected 3 but were [%d]",action.getFieldErrors().size()),
@@ -53,13 +55,13 @@ public class ProductActionValidationTests extends AbstractActionValidationTestCa
 		
 		ActionProxy actionProxy = getProxy("/product/editProduct",new String [] {"name","14.56","desc","fighters"});
 		CreateEditAction action =  (CreateEditAction) actionProxy.getAction();	
-		
+        String result = actionProxy.execute();
 		
 		assertEquals("The validation passed when it shouldn't have",
-								ActionSupport.INPUT,actionProxy.execute());
+								ActionSupport.INPUT,result);
 		assertTrue("There were less  than expected "
 				+ "errors in the validation when passing incorrect parameters",
-								action.getFieldErrors().size() == 1);	
+								action.getFieldErrors().size() == 2);	
 
 	}
 	
