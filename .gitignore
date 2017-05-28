@@ -6,3 +6,6 @@ target/
 .project
 .settings/
 /build/
+/target/
+.tern-project
+phantomjsdriver.log
