@@ -21,6 +21,12 @@
 			  <interceptor-ref name="defaultStack"/>
 			</interceptor-stack>
 		</interceptors>
+		<global-results>
+			<result name="error" type="tiles">error404</result>
+		</global-results>
+		<global-exception-mappings>
+		    <exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
     </package>
     		
     <package name="index" extends="default" namespace="/">

@@ -102,7 +102,7 @@
 		<put-attribute name="main" value="/login.jsp"/>
 	</definition>
 	
-	<definition name="404" extends="basePageLayout">
+	<definition name="error404" extends="basePageLayout">
 		<put-attribute name="title" type="string" value="404 Page"/>
 		<put-attribute name="main" value="/WEB-INF/content/jsp/base/404.jsp"/>
 	</definition>
