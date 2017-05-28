@@ -31,6 +31,7 @@ public class CreateUserPageTests extends AbstractWebPageTest {
         login.loginIfNotAuthenticated("user1", "password");
         loadPage("/user/loadCreate");
         cPage.createUser("username6", "password", "email@email6.com", "description","address");
+
         assertEquals("404 Page",driver.getTitle().trim());
     }
     

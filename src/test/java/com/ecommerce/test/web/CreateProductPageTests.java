@@ -58,7 +58,7 @@ public class CreateProductPageTests extends AbstractWebPageTest {
         loadPage("/product/loadCreate");
         
         cPage.createProduct("product1", "description", "10.30", "fighters");
-        assertTrue(login.assertOnLoginPage());
+        assertEquals("404 Page",driver.getTitle().trim());
     }
     
 }

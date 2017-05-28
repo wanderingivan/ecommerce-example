@@ -32,7 +32,7 @@ public class EditUserPageTests extends AbstractWebPageTest {
         login.login("user2", "password");
         loadPage("/user/loadEdit?username=user2");
         ePage.editUser("username6","email@email6.com", "description","address");
-        assertTrue(login.assertOnLoginPage());
+        assertEquals("404 Page",driver.getTitle().trim());
     }
     
     @Test
@@ -63,7 +63,7 @@ public class EditUserPageTests extends AbstractWebPageTest {
         login.logoutIfAuthenticated();
         loadPage("/user/loadEdit?username=user2");
         ePage.editUser("username6","email@email6.com", "description","address");
-        assertTrue(login.assertOnLoginPage());
+        assertEquals("404 Page",driver.getTitle().trim());
     }   
     
 }
