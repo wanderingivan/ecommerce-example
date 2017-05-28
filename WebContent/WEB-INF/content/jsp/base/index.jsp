@@ -69,14 +69,10 @@
 	  	  <s:subset source="latest" count="4">
 	  	  <s:iterator>
 			<s:url action="show" namespace="/product" var="product">
-		      <s:param name="productName">
-		        <s:property value="productName"/>
-		      </s:param>
+		      <s:param name="productName" value="%{productName}"/>
 		    </s:url>
   			<s:url action="loadImage" namespace="/util" var="loadImage">
-    	      <s:param name="path">
-      			<s:property value="imagePath"/>
-    		  </s:param>
+    	      <s:param name="path" value="%{imagePath}"/>
   			</s:url>  	  
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="product-block">

@@ -11,22 +11,22 @@
 	  </div>
       <div class="errorMessage">
         <s:if test="%{#session.SPRING_SECURITY_LAST_EXCEPTION}">
-          <div class="alert alert-warning"><s:text name="global.login_error"/></div>
+          <div id="loginError" class="alert alert-warning"><s:text name="global.login_error"/></div>
         </s:if>
       </div>
       <form class="form-horizontal" action="/Ecommerce/login" method="POST" name="login">
         <s:label><s:text name="global.username"/></s:label>
         <div class="form-group">
-          <s:textfield name="username" cssClass="form-control"/>
+          <s:textfield id="username" name="username" cssClass="form-control"/>
    	    </div>
         <s:label><s:text name="global.password"/></s:label>
         <div class="form-group">
-          <s:password name="password" cssClass="form-control"/>
+          <s:password id="password" name="password" cssClass="form-control"/>
         </div>
         <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
         <div class="form-group" style="">
          <div align="center">
-	     <s:submit align="center" class="btn btn-add-cart" key="global.log_in"/>
+	     <s:submit id="loginSubmit" align="center" class="btn btn-add-cart" key="global.log_in"/>
 	     </div>
    		</div>
   	  </form>

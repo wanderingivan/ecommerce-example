@@ -103,7 +103,7 @@
 			  </li>
 		      <li>
 		        <form action="/Ecommerce/logout" class="navbar-form" method="POST">
-  				  <s:submit class="btn btn-subnav" type="submit" key="global.log_out"/>
+  				  <s:submit id="logoutSubmit" class="btn btn-subnav" type="submit" key="global.log_out"/>
     			  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			    </form>
 			  </li>			  

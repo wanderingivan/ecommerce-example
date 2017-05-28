@@ -12,14 +12,14 @@
 		   <s:form action="editProduct" theme="simple" namespace="/product" enctype="multipart/form-data">
 		   	 <div class="form-group">
 		   	   <s:hidden name="product.id" value="%{product.id}"/>
-		   	   <s:fielderror fieldName="product.productName" cssClass="alert alert-danger"/>
+		   	   <s:fielderror id="productNameError" fieldName="product.productName" cssClass="alert alert-danger"/>
 		   	   <s:label for="product.productName"><s:text name="global.product_name"/></s:label>
-		       <s:textfield name="product.productName" value="%{product.productName}" class="form-control"/>
+		       <s:textfield id="product" name="product.productName" value="%{product.productName}" class="form-control"/>
 		     </div>
 		     <div class="form-group">
 		   	   <s:label for="product.category"><s:text name="global.product_category"/></s:label>&nbsp;
 		   	   <s:fielderror fieldName="product.category" cssClass="alert alert-danger"/>
-		       <s:select name="category" label="Category"
+		       <s:select id="category" name="category" label="Category"
 		       		     list="#{'ground-attack':'ground-attack','bombers':'bombers','fighters':'fighters','transport':'transport'}">
 			     <s:param name="value">
 					${product.category}
@@ -27,9 +27,9 @@
 				</s:select>
 		     </div>
 		   	 <div class="form-group">
-		   	   <s:fielderror fieldName="product.description" cssClass="alert alert-danger"/>
+		   	   <s:fielderror id="descriptionError" fieldName="product.description" cssClass="alert alert-danger"/>
 		   	   <s:label for="product.description"><s:text name="global.description"/></s:label>
-		       <s:textarea name="product.description" value="%{product.description}" class="form-control"/>		       
+		       <s:textarea id="description" name="product.description" value="%{product.description}" class="form-control"/>		       
 		     </div>
 		   	 <div id="detailsGroup" class="form-group">
 		   	   <s:fielderror fieldName="product.details" cssClass="alert alert-danger"/>
@@ -51,12 +51,12 @@
 		       <s:file name="productPic" accept="image/jpg"/>
 		     </div>
 		   	 <div class="form-group">
-		   	   <s:fielderror fieldName="product.price" cssClass="alert alert-danger"/>
+		   	   <s:fielderror id="priceError" fieldName="product.price" cssClass="alert alert-danger"/>
 		   	   <s:label for="product.price"><s:text name="global.price"/></s:label>
-		       <s:textfield class="form-control"  value="%{product.price}" name="product.price"/>
+		       <s:textfield id="price" class="form-control"  value="%{product.price}" name="product.price"/>
 		     </div>
 		   	 <div class="form-group">
-		       <s:submit value="Edit"/>
+		       <s:submit id="editSubmit" value="Edit"/>
 		     </div>
 		   	 <s:hidden name="product.imagePath" value="%{product.imagePath}"/>
     		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

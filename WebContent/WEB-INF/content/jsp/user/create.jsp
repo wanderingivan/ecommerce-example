@@ -16,36 +16,36 @@
 		<div class="forms">
 		  <s:form action="createUser" theme="simple" namespace="/user" enctype="multipart/form-data">
 		   	<div class="form-group">
-		   	  <s:fielderror fieldName="user.username" cssClass="alert alert-danger"/>
+		   	  <s:fielderror id="usernameError" fieldName="user.username" cssClass="alert alert-danger"/>
 		   	  <s:label for="user.username"><s:text name="global.username"/></s:label>
-		      <s:textfield name="user.username" class="form-control"/>
+		      <s:textfield id="username" name="user.username" class="form-control"/>
 		    </div>
 		    <div class="form-group">
-		   	  <s:fielderror fieldName="user.email" cssClass="alert alert-danger"/>
+		   	  <s:fielderror id="emailError" fieldName="user.email" cssClass="alert alert-danger"/>
 		      <s:label for="user.email"><s:text name="global.email"/></s:label>
-		      <s:textfield name="user.email" class="form-control"/>
+		      <s:textfield id="email" name="user.email" class="form-control"/>
 		    </div>
 		    <div class="form-group">
-		   	  <s:fielderror fieldName="user.address" cssClass="alert alert-danger"/>
+		   	  <s:fielderror id="addressError" fieldName="user.address" cssClass="alert alert-danger"/>
 		      <s:label for="user.address"><s:text name="global.address"/></s:label>
-		      <s:textfield name="user.address" class="form-control"/>
+		      <s:textfield id="address" name="user.address" class="form-control"/>
 		    </div>
 		   	<div class="form-group">
-		   	  <s:fielderror fieldName="user.details" cssClass="alert alert-danger"/>
+		   	  <s:fielderror id="descriptionError" fieldName="user.details" cssClass="alert alert-danger"/>
 		   	  <s:label for="user.details"><s:text name="global.description"/></s:label>
-		      <s:textarea name="user.details" class="form-control"></s:textarea>
+		      <s:textarea id="description" name="user.details" class="form-control"></s:textarea>
 		    </div>
 		   	<div class="form-group">
 		   	  <s:label for="profilePic"><s:text name="global.profile_pic"/></s:label>
 		      <s:file  name="profilePic" accept="image/jpg"/>
 		    </div>
 		    <div class="form-group">
-		   	  <s:fielderror fieldName="user.password" cssClass="alert alert-danger"/>
+		   	  <s:fielderror id="passwordError" fieldName="user.password" cssClass="alert alert-danger"/>
 		      <s:label for="user.password"><s:text name="global.password"/></s:label>
-		      <s:password name="user.password" placeholder="*******" class="form-control"/>
+		      <s:password id="password" name="user.password" placeholder="*******" class="form-control"/>
 		     </div>
 		   	 <div class="form-group">
-		       <s:submit key="global.create"/>
+		       <s:submit id="createSubmit" key="global.create"/>
 		     </div>
 			 <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>
 		   </s:form>

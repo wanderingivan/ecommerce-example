@@ -31,7 +31,7 @@
 	      <div class="row">
 	      	<div class="col-md-1 hidden-sm"></div>
 	      	<div class="col-md-10 col-sm-12">
-	      	  <h2><s:text name="global.user_profile"/></h2>
+	      	  <h2 id="username"><s:text name="global.user_profile"/></h2>
 	      	</div>
 	      	<div class="col-md-1 hidden-sm"></div>
 	      </div>
@@ -47,7 +47,7 @@
 	        	<div class="col-md-6 col-sm-9 col-xs-12">
 	        	  <div class="box">
 	        	    <h4><s:text name="global.about_me"/></h4>
-	        	  	<p><s:property value="user.details"/></p>
+	        	  	<p id="description"><s:property value="user.details"/></p>
 	        	  </div>
 	        	</div>
 	          </div>

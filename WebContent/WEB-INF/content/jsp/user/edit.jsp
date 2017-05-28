@@ -15,30 +15,30 @@
 		   	<s:hidden name="user.id" value="%{user.id}"/>
 		   	<div class="form-group">
 		   	  <s:label for="user.username"><s:text name="global.username"/></s:label>
-		   	  <s:fielderror fieldName="user.username" cssClass="alert alert-danger"/>
-		      <s:textfield name="user.username" value="%{user.username}" class="form-control"/>
+		   	  <s:fielderror id="usernameError" fieldName="user.username" cssClass="alert alert-danger"/>
+		      <s:textfield id="username" name="user.username" value="%{user.username}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
 		      <s:label for="email"><s:text name="global.email"/></s:label>
-		   	  <s:fielderror fieldName="user.email" cssClass="alert alert-danger"/>
-		      <s:textfield name="user.email" value="%{user.email}" class="form-control"/>
+		   	  <s:fielderror id="emailError" fieldName="user.email" cssClass="alert alert-danger"/>
+		      <s:textfield id="email" name="user.email" value="%{user.email}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
 		      <s:label for="address"><s:text name="global.address"/></s:label>
-		   	  <s:fielderror fieldName="user.address" cssClass="alert alert-danger"/>
-		      <s:textfield name="user.address" value="%{user.address}" class="form-control"/>
+		   	  <s:fielderror id="addressError" fieldName="user.address" cssClass="alert alert-danger"/>
+		      <s:textfield id="address" name="user.address" value="%{user.address}" class="form-control"/>
 		    </div>
 		   	<div class="form-group">
 		   	  <s:label for="user.details"><s:text name="global.description"/></s:label>
-		   	  <s:fielderror fieldName="user.details" cssClass="alert alert-danger"/>
-		      <s:textarea name="user.details" value="%{user.details}" class="form-control"></s:textarea>
+		   	  <s:fielderror id="descriptionError" fieldName="user.details" cssClass="alert alert-danger"/>
+		      <s:textarea id="description" name="user.details" value="%{user.details}" class="form-control"></s:textarea>
 		    </div>
 		   	<div class="form-group">
 		   	  <s:label for="profilePic">Picture</s:label>
 		      <s:file accept="image/jpg" name="profilePic"/>
 		    </div>
 		   	 <div class="form-group">
-		       <s:submit value="Upload"/>
+		       <s:submit id="editSubmit" value="Upload"/>
 		     </div>
 		   	 <s:hidden name="user.imagePath" value="%{user.imagePath}"/>
 			 <s:hidden name="%{#attr._csrf.parameterName}" value="%{#attr._csrf.token}"/>

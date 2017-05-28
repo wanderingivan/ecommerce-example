@@ -25,14 +25,14 @@
     <div class="container">
 	  <ul class="breadcrumb">
 		<li><s:a action="welcome" namespace="/">Home</s:a></li>
-		<li><s:a href="%{category}">${product.category}</s:a></li>
+		<li><s:a id="category" href="%{category}">${product.category}</s:a></li>
 		<li>${product.productName}</li>
 	  </ul>
       <div class="heading">
 	    <div class="row">
 		  <div class="col-md-1 hidden-sm"></div>
 		  <div class="col-md-10 col-sm-12">
-		    <h2>${product.productName}</h2>
+		    <h2 id="productName">${product.productName}</h2>
 			<a class="scroll_to" href="#details"><s:text name="global.scroll_details"/></a>
 		  </div>
 		  <div class="col-md-1 hidden-sm"></div>
@@ -90,7 +90,7 @@
 			  <div class="box">
 				<ul class="box-list">
 				  <li>
-				    <span class="price">
+				    <span id="price" class="price">
 				      <s:text name="global.money">
 					    <s:param name="value" value="%{product.price}"/>				  
 				      </s:text>
@@ -133,9 +133,9 @@
 			  <div class="col-md-12">
 			    <div class="tab-content" style="min-height:400px">
                   <div id="pinfo" class="tab-pane fade in active">
-                    <h4><s:text name="global.sold_by"/>&nbsp;<s:a href="%{seller}"><s:property value="product.seller.username"/></s:a></h4>
+                    <h4><s:text name="global.sold_by"/>&nbsp;<s:a id="author" href="%{seller}"><s:property value="product.seller.username"/></s:a></h4>
 				    <div class="description text-muted">
-				      <p>${product.description}</p>
+				      <p id="description">${product.description}</p>
 				    </div>
 				    <div class="details">
 					  <h3><s:text name="global.product_details"/>:</h3>
