@@ -66,7 +66,6 @@ public class CreateEditAction extends AbstractUserAction implements ModelDriven<
 			return INPUT;
 			
 		}catch(Exception e){
-			
 			logger.error("Error creating user " + user + "\n" + e);
 
 		}
@@ -75,7 +74,9 @@ public class CreateEditAction extends AbstractUserAction implements ModelDriven<
 	
 	public String editUser(){
 		try{
-			logger.info(String.format("User %s Editing user %d",userDetails.getUsername(),user.getId()));
+	        if(logger.isInfoEnabled()){
+	            logger.info(String.format("User %s Editing user %d",userDetails.getUsername(),user.getId()));
+	        }
 			
 			if(profilePic != null){
 				String imagePath = imageService.saveImage(profilePic, profilePicContentType, profilePicFileName);
@@ -96,7 +97,6 @@ public class CreateEditAction extends AbstractUserAction implements ModelDriven<
 			return INPUT;
 			
 		}catch(Exception e){
-			
 			logger.error("Error editing user " + user.getId() + "\n" + e);
 		}
 		return ERROR;
