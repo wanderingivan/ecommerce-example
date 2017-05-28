@@ -113,8 +113,8 @@ public class Product {
 		this.price = price;
 	}
 	@RequiredStringValidator(fieldName="description",key="global.empty_field")
-	@StringLengthFieldValidator(maxLength = "1000",
-	        					fieldName="description",key="global.field_max_size")
+	@StringLengthFieldValidator(minLength="10", maxLength = "1000",
+	        					fieldName="description",key="global.field_between_size")
 	public String getDescription() {
 		return description;
 	}
