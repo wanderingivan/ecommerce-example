@@ -353,6 +353,13 @@
       </resource>
     </resources>  
   
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>    
+  
     <plugins>
     
       <plugin>
@@ -664,6 +671,26 @@
       </build>
     
     </profile>
+
+    <profile>
+    	<id>phantomjs-browser</id>
+    	<activation>
+    	  <activeByDefault>true</activeByDefault>
+    	</activation>
+    	<properties>
+		  <browser>phantomjs</browser>
+		  <driverBinary>none</driverBinary>
+    	</properties>
+    </profile>
+
+    <profile>
+    	<id>chrome-browser</id>
+    	<properties>
+		  <browser>chrome</browser>
+		  <driverBinary>chromeDriverBinary</driverBinary>
+		  <driverName>chromedriver</driverName>
+    	</properties>
+    </profile>      
   
   </profiles>		
   
