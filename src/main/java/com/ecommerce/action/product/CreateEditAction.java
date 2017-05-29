@@ -69,7 +69,6 @@ public class CreateEditAction extends AbstractProductAction implements ModelDriv
 			return INPUT;
 		}catch(Exception e){
 			logger.error(String.format("Error editing product %d by user %s \n %s",product.getId(),user.getUsername(),e));
-			e.printStackTrace();
 		}
 		return ERROR;
 	}
