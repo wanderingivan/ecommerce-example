@@ -49,7 +49,7 @@ function getProductHtml(product){
 function populateCart(event){
 	var target = $("#cartDropdown");
      if($("#cartDropdown li").length === 0){
-    	 	$.getJSON(window.location.origin +'/Ecommerce/cart/cart',function(jd){// XXX FIX THIS URL !!!
+    	 	$.getJSON(window.location.origin +'/Ecommerce/cart/cart',function(jd){
     	 		target.empty();
     	 		if(jd.items == null){
     	 			target.html("<li class='divider'></li>");
@@ -71,10 +71,8 @@ function populateCart(event){
 function populateUnreadMessages(){
 	var target = $("#messagesDropdown");
      if($("#messagesDropdown li").length === 0){
-    	 	$.getJSON('/Ecommerce/message/unread-messages',function(jd){// XXX FIX THIS URL!!!
+    	 	$.getJSON('/Ecommerce/message/unread-messages',function(jd){
     	 		target.empty();
-    	 		console.log("JD");
-    	 		console.log(jd);
     	 		if(jd.messages.length == 0){
     	 			target.html("<li class='divider'></li>");
     	 			target.append("<p style='margin-left:15px;color:#22a17d;'>You have no unread messages</p>");
