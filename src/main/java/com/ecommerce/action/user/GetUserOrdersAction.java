@@ -28,11 +28,15 @@ public class GetUserOrdersAction extends AbstractUserAction implements Authentic
 	private UserDetails user;
 	
 	public String execute(){
-		
-		logger.info("Fetching orders for user " + user.getUsername());
+	    
+	    if(logger.isInfoEnabled()){
+	        logger.info("Fetching orders for user " + user.getUsername());
+	    }
 		try{
 			orders = service.getOrders((User) user);
-			logger.debug("Orders " + orders);
+			if(logger.isDebugEnabled()){
+			    logger.debug("Orders " + orders);
+			}
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error("Error fetching orders for user " + user.getUsername() + "\n" + e);

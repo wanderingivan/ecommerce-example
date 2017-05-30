@@ -75,7 +75,7 @@ public class CreateEditAction extends AbstractUserAction implements ModelDriven<
 	public String editUser(){
 		try{
 	        if(logger.isInfoEnabled()){
-	            logger.info(String.format("User %s Editing user %d",userDetails.getUsername(),user.getId()));
+	            logger.info(String.format("User %s Editing user %s",userDetails.getUsername(),user));
 	        }
 			
 			if(profilePic != null){

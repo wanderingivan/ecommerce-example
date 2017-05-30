@@ -46,7 +46,6 @@ public class GetOrdersAsXlsAction extends ActionSupport implements Authenticated
 			return SUCCESS;
 		}catch(Exception e){
 			logger.error(String.format("Error converting order with id %d to xlsx %s",id,e));
-			e.printStackTrace();
 		}finally{
 			if(workbook != null){
 				try{
@@ -71,8 +70,7 @@ public class GetOrdersAsXlsAction extends ActionSupport implements Authenticated
 			inputStream = new ByteArrayInputStream(out.toByteArray());
 			return SUCCESS;
 		}catch(Exception e){
-			logger.error(String.format("Error converting order with id %d to xlsx %s",id,e));
-			e.printStackTrace();
+			logger.error(String.format("Error converting orders for user %s to xlsx %s",user.getUsername(),e));
 		}finally{
 			if(workbook != null){
 				try{
