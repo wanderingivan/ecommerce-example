@@ -295,7 +295,9 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		UserDetails u =template.queryForObject(loadUserByUsernameQuery,new Object[]{username}, new RowMapper<User>(){
+	    UserDetails u = null;
+	    try{
+	        u =template.queryForObject(loadUserByUsernameQuery,new Object[]{username}, new RowMapper<User>(){
 
 					@Override
 					public User mapRow(ResultSet rs, int rowNum)
@@ -309,6 +311,9 @@ public class JdbcUserDao implements UserDao,UserDetailsService {
 						u.addAuthority(new SimpleGrantedAuthority(rs.getString("authority")));
 						return u;
 					}});
+	    }catch(EmptyResultDataAccessException e){
+	        throw new UsernameNotFoundException("Username " + username + " doesn't exist");
+	    }
 		return u;
 	}
 	
