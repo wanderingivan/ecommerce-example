@@ -31,9 +31,9 @@ public class EditProductPageTests extends AbstractWebPageTest {
         
         loadPage("/product/loadEdit?productName=IAI+Kfir");
         
-        ePage.editProduct("product1", "description", "10.30", "fighters");
+        ePage.editProduct("product2", "description", "10.30", "fighters");
 
-        assertEquals("product1",productPage.getProductName());
+        assertEquals("product2",productPage.getProductName());
         assertEquals("description",productPage.getDescription());
         assertEquals("$10.30",productPage.getPrice());
         assertEquals("fighters",productPage.getCategory());
@@ -57,7 +57,7 @@ public class EditProductPageTests extends AbstractWebPageTest {
         login.logoutIfAuthenticated();
         loadPage("/product/loadEdit?productName=IAI+Kfir");
         
-        ePage.editProduct("product1", "description", "10.30", "fighters");
+        ePage.editProduct("product2", "description", "10.30", "fighters");
         assertEquals("404 Page",driver.getTitle().trim());
     }
     
@@ -69,7 +69,7 @@ public class EditProductPageTests extends AbstractWebPageTest {
         
         loadPage("/product/loadEdit?productName=IAI+Kfir");
         
-        ePage.editProduct("product1", "description", "10.30", "fighters");
+        ePage.editProduct("product2", "description", "10.30", "fighters");
 
         assertEquals("404 Page",driver.getTitle().trim());
     }    

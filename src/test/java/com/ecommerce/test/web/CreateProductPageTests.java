@@ -35,7 +35,7 @@ public class CreateProductPageTests extends AbstractWebPageTest {
 
         assertEquals("product1",productPage.getProductName());
         assertEquals("description",productPage.getDescription());
-        assertEquals("10.30",productPage.getPrice());
+        assertEquals("$10.30",productPage.getPrice());
         assertEquals("fighters",productPage.getCategory());
         assertEquals("user1",productPage.getAuthor());
         
