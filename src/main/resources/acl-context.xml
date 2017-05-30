@@ -27,8 +27,8 @@
 		<constructor-arg ref="dataSource"/>
         <constructor-arg ref="lookupStrategy"/>
         <constructor-arg ref="aclCache"/>
-        <property name="classIdentityQuery" value="SELECT @@IDENTITY"/><!-- This works only for MYSQL different DB will have different values -->
-		<property name="sidIdentityQuery" value="SELECT @@IDENTITY"/>	
+        <property name="classIdentityQuery" value="SELECT LAST_INSERT_ID()"/>
+		<property name="sidIdentityQuery" value="SELECT LAST_INSERT_ID()"/>	
 	</bean>
 	
 	<!-- A lookup strategy for optimizing database queries -->

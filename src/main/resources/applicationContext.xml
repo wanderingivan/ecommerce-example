@@ -58,7 +58,7 @@
 	</bean>
    	
     <!-- Datasource and Transaction Config -->
-   	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+   	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
    	    <property name="driverClass" value="${db.driver_class}" />
 		<property name="jdbcUrl" value="${db.url}" />
 		<property name="user" value="${db.user}" />
